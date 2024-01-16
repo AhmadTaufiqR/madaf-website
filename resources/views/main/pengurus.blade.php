@@ -1,6 +1,6 @@
 <div class="content-wrapper" style="overflow-x: auto">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Admin</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Pengurus</h4>
         <!-- Bootstrap Toasts with Placement -->
         <div class="card mb-4">
             <div class="card-body">
@@ -8,7 +8,7 @@
                     <div class="col-md-3">
                         {{-- <label class="form-label" for="showToastPlacement">&nbsp;</label> --}}
                         <button id="showToastPlacement" type="button" data-bs-toggle="modal"
-                            data-bs-target="#largeModal" class="btn btn-primary d-block">Tambah Admin</button>
+                            data-bs-target="#largeModal" class="btn btn-primary d-block">Tambah Pengurus</button>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
         <!--/ Bootstrap Toasts with Placement -->
         <!-- Contextual Classes -->
         <div class="card">
-            <h5 class="card-header">Admin</h5>
+            <h5 class="card-header">Pengurus</h5>
             <div class="text-nowrap" style="overflow-x: auto">
                 <table class="table">
                     <thead>
@@ -32,7 +32,7 @@
                             $no = 0;
                         @endphp
 
-                        @foreach ($users as $user)
+                        {{-- @foreach ($users as $user)
                             @if ($no++ % 2 == 0)
                                 <tr class="table-active">
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
@@ -317,7 +317,7 @@
                                     </div>
                                 </div>
                             @endif
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
 
                 </table>
@@ -402,7 +402,7 @@
 
 
 
-        {{ $users->links('vendor.pagination.custom') }}
+        {{-- {{ $users->links('vendor.pagination.custom') }} --}}
     </div>
 </div>
 

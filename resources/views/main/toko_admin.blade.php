@@ -1,13 +1,13 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Toko</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Koperasi</h4>
         <!-- Bootstrap Toasts with Placement -->
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row gx-3 gy-2 align-items-center">
                     <div class="col-md-3">
                         <button id="showToastPlacement" type="button" data-bs-toggle="modal" data-bs-target="#largeModal"
-                            class="btn btn-primary">Tambah Toko</button>
+                            class="btn btn-primary">Tambah Koperasi</button>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
         <!--/ Bootstrap Toasts with Placement -->
         <!-- Contextual Classes -->
         <div class="card">
-            <h5 class="card-header">Daftar Toko</h5>
+            <h5 class="card-header">Daftar Koperasi</h5>
             <div class=" text-nowrap" style="overflow-x: auto">
                 <table class="table">
                     <thead>
@@ -34,7 +34,7 @@
                             $no = 0;
                         @endphp
 
-                        @foreach ($stores as $store)
+                        {{-- @foreach ($stores as $store)
                             @if ($no++ % 2 == 0)
                                 <tr class="table-active">
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
@@ -199,7 +199,7 @@
                                     </div>
                                 </div>
                             @endif
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
 
                 </table>
@@ -280,6 +280,6 @@
         </div>
 
 
-        {{ $stores->links('vendor.pagination.custom') }}
+        {{-- {{ $stores->links('vendor.pagination.custom') }} --}}
     </div>
 </div>
