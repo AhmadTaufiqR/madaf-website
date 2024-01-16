@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class product_in extends Model
+class Detail_transaction extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillabe = ['products', 'product_new', 'from', 'total', 'date', 'price'];
+    protected $fillable = ['id_product', 'quantity', 'unit_price', 'subtotal'];
 
-    public function product() {
-        return $this->belongsTo(product::class, 'products', 'id');
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'id_product', 'id');
     }
 }

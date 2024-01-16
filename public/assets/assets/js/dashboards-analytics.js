@@ -15,16 +15,16 @@
 
   async function fetchData() {
 
-    var data_api = new Array();
+    // var data_api = new Array();
 
-    const response = await fetch('/api/getstatistic');
-    const data = await response.json();
+    // const response = await fetch('/api/getstatistic');
+    // const data = await response.json();
 
-    const dataFetch = data.map(item => item.price);
+    // const dataFetch = data.map(item => item.price);
 
-    dataFetch.forEach(element => {
-      data_api.push(element)
-    });
+    // dataFetch.forEach(element => {
+    //   data_api.push(element)
+    // });
 
     // Profit Report Line Chart
     // --------------------------------------------------------------------
@@ -65,7 +65,7 @@
         },
         series: [
           {
-            data: data_api
+            data: [2, 5, 10, 20, 35]
           }
         ],
         xaxis: {
@@ -92,16 +92,16 @@
   
   async function fetchData2() {
 
-    var data_api = new Array();
+    // var data_api = new Array();
 
-    const response = await fetch('/api/getstatistic');
-    const data = await response.json();
+    // const response = await fetch('/api/getstatistic');
+    // const data = await response.json();
 
-    const dataFetch = data.map(item => item.price);
+    // const dataFetch = data.map(item => item.price);
 
-    dataFetch.forEach(element => {
-      data_api.push(element)
-    });
+    // dataFetch.forEach(element => {
+    //   data_api.push(element)
+    // });
 
     // Total Revenue Report Chart - Bar Chart
     // --------------------------------------------------------------------

@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_pondok')->nullable(true);
+            $table->foreign('id_pondok')->references('id')->on('pondoks');
             $table->string('name');
             $table->string('owner');
-            $table->string('kecamatan');
-            $table->string('kabupaten');
-            $table->text('address');
-            $table->date('date');
+            $table->string('address');
+            $table->string('image');
+            $table->integer('balance');
             $table->softDeletes();
             $table->timestamps();
         });

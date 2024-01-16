@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('laporans', function (Blueprint $table) {
+        Schema::create('tokens', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->integer('total_product');
-            $table->string('populer_product');
-            $table->double('amount');
-            $table->softDeletes();
+            $table->foreignId('user_id')->constrained();
+            $table->string('token');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laporans');
+        Schema::dropIfExists('tokens');
     }
 };
