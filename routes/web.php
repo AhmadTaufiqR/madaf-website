@@ -56,8 +56,15 @@ Route::prefix('login')->group(function () {
 //     Route::post('check-owner', [OwnerController::class, 'add_owner']);  
 // });
 
-Route::prefix('register-user')->group(function () {
-    Route::post('check', [OwnerController::class, 'add_admin'])->middleware('isLogin');
+Route::prefix('register-user-pengurus')->group(function () {
+    Route::post('check', [OwnerController::class, 'add_pengurus'])->middleware('isLogin');
+    Route::post('update/{id}', [OwnerController::class, 'update'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'update_password'])->middleware('isLogin');
+    Route::delete('delete/{id}', [OwnerController::class, 'destroy'])->middleware('isLogin')->name('users.destroy');
+});
+
+Route::prefix('register-user-santri')->group(function () {
+    Route::post('check', [OwnerController::class, 'add_santri'])->middleware('isLogin');
     Route::post('update/{id}', [OwnerController::class, 'update'])->middleware('isLogin');
     Route::post('update-password/{id}', [OwnerController::class, 'update_password'])->middleware('isLogin');
     Route::delete('delete/{id}', [OwnerController::class, 'destroy'])->middleware('isLogin')->name('users.destroy');

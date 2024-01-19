@@ -20,6 +20,6 @@ class isLogin
         if (Auth::check()) {
             return $next($request);
         }
-        return redirect('login')->withErrors('Silahkan login terlebih dahulu');
+        return redirect('/')->withErrors('Silahkan login terlebih dahulu');
     }
 }

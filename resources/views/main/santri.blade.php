@@ -6,7 +6,6 @@
             <div class="card-body">
                 <div class="row gx-3 gy-2 align-items-center">
                     <div class="col-md-3">
-                        {{-- <label class="form-label" for="showToastPlacement">&nbsp;</label> --}}
                         <button id="showToastPlacement" type="button" data-bs-toggle="modal"
                             data-bs-target="#largeModal" class="btn btn-primary d-block">Tambah Santri</button>
                     </div>
@@ -21,9 +20,11 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Nama</th>
+                            <th>Email</th>
                             <th>Username</th>
-                            <th>Level</th>
+                            <th>Alamat</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -31,15 +32,24 @@
                         @php
                             $no = 0;
                         @endphp
-
-                        {{-- @foreach ($users as $user)
+                        @foreach ($santri as $user)
                             @if ($no++ % 2 == 0)
                                 <tr class="table-active">
+                                    <td>{{ $loop->iteration }}</td>
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
                                         <strong>{{ $user->name }}</strong>
                                     </td>
+                                    @if ($user->email == null)
+                                        <td>-</td>
+                                    @else
+                                        <td>{{ $user->email }}</td>
+                                    @endif
                                     <td>{{ $user->username }}</td>
-                                    <td><span class="badge bg-label-success me-1">{{ $user->level }}</span></td>
+                                    @if ($user->address == null)
+                                        <td>-</td>
+                                    @else
+                                        <td><span class="badge bg-label-success me-1">{{ $user->address }}</span></td>
+                                    @endif
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown">
@@ -61,6 +71,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                                 <!-- Large Modal Add -->
                                 <div class="modal fade" id="editModal-{{ $user->id }}" tabindex="-1"
                                     aria-hidden="true">
@@ -106,12 +117,10 @@
                                                         </div>
                                                     </div>
                                                 </form>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="modal fade" id="editModalPassword-{{ $user->id }}" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -178,11 +187,21 @@
                                 </div>
                             @else
                                 <tr class="table-default">
-                                    <td><i class="fab fa-sketch fa-lg text-warning me-3"></i>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td><i class="fab fa-react fa-lg text-info me-3"></i>
                                         <strong>{{ $user->name }}</strong>
                                     </td>
+                                    @if ($user->email == null)
+                                        <td>-</td>
+                                    @else
+                                        <td>{{ $user->email }}</td>
+                                    @endif
                                     <td>{{ $user->username }}</td>
-                                    <td><span class="badge bg-label-primary me-1">{{ $user->level }}</span></td>
+                                    @if ($user->address == null)
+                                        <td>-</td>
+                                    @else
+                                        <td><span class="badge bg-label-success me-1">{{ $user->address }}</span></td>
+                                    @endif
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown">
@@ -204,6 +223,7 @@
                                         </div>
                                     </td>
                                 </tr>
+
                                 <!-- Large Modal Add -->
                                 <div class="modal fade" id="editModal-{{ $user->id }}" tabindex="-1"
                                     aria-hidden="true">
@@ -241,11 +261,13 @@
                                                     <div class="mt-2">
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-outline-secondary"
-                                                                data-bs-dismiss="modal">Close</button>
+                                                                data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
                                                             <button type="submit" name="submit"
                                                                 class="btn btn-primary">Save Change</button>
                                                         </div>
-                                                        <div class="mt-2">
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -311,35 +333,75 @@
                                                         </div>
                                                     </div>
                                                 </form>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             @endif
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-        <!-- Large Modal Add -->
-        <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+
+        <!-- Large Modal Export Exel -->
+        <div class="modal fade" id="largeModalExportExel" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Admin</h5>
+                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Santri</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="register-user/check" class="demo-vertical-spacing demo-only-element"
+                            method="POST" autocomplete="off" enctype="multipart/form-data">
+                            @csrf
+                            <div class="mt-2">
+                                <label class="form-label" for="name">File Exel</label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" accept=".xls, .xlsx, .csv"
+                                        name="fileExel" aria-describedby="basic-addon11" onkeyup="" required />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="showImportExel" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#largeModal" class="btn btn-outline-secondary">Cencel</button>
+                                <button type="submit" name="submit" id="btn_save_add_import" disabled
+                                    class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Large Modal Add -->
+        <div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Santri</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="register-user-santri/check" class="demo-vertical-spacing demo-only-element"
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">
-                                <label class="form-label" for="name">Nama</label>
+                                <label class="form-label" for="username">Username <span
+                                        style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control"
+                                        value="{{ Session::get('username') }}" name="username_add"
+                                        placeholder="Username" aria-label="username" aria-describedby="basic-addon11"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="name">Nama <span
+                                        style="color: red">*</span></label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" value="{{ Session::get('name') }}"
                                         name="name_add" placeholder="Name" aria-label="Name"
@@ -347,17 +409,25 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="username">Username</label>
+                                <label class="form-label" for="email">Email</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">@</span>
-                                    <input type="text" class="form-control"
-                                        value="{{ Session::get('username') }}" name="username_add"
-                                        placeholder="Username" aria-label="Username" aria-describedby="basic-addon11"
-                                        required />
+                                    <input type="text" class="form-control" value="{{ Session::get('email') }}"
+                                        name="email_add" placeholder="email" aria-label="email"
+                                        aria-describedby="basic-addon11" />
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="basic-default-password12">Password</label>
+                                <label class="form-label" for="address">address</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="{{ Session::get('address') }}"
+                                        name="address_add" placeholder="address" aria-label="address"
+                                        aria-describedby="basic-addon11" />
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="basic-default-password12">Password <span
+                                        style="color: red">*</span></label>
                                 <div class="form-password-toggle">
                                     <div class="input-group">
                                         <input type="password" class="form-control" name="password_add"
@@ -370,7 +440,8 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="basic-default-password12">Ulangi Password</label>
+                                <label class="form-label" for="basic-default-password12">Ulangi Password <span
+                                        style="color: red">*</span></label>
                                 <div class="form-password-toggle">
                                     <div class="input-group">
                                         <input type="password" class="form-control" name="confirm_password_add"
@@ -384,25 +455,19 @@
                                     <span id='message_add'></span>
                                 </div>
                             </div>
-
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    Close
-                                </button>
+                                <button id="showImportExel" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#largeModalExportExel" class="btn btn-primary">Import
+                                    Exel</button>
                                 <button type="submit" name="submit" id="btn_save_add" disabled
-                                    class="btn btn-primary">Save</button>
+                                    class="btn btn-outline-secondary">Save</button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
-        {{-- {{ $users->links('vendor.pagination.custom') }} --}}
+        {{-- {{ $Santri->links('vendor.pagination.custom') }} --}}
     </div>
 </div>
 
@@ -439,9 +504,13 @@
             message.innerHTML = 'Password tidak cocok';
             message.style.color = 'red';
             button.disabled = true;
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-outline-secondary");
         } else {
             message.innerHTML = '';
             button.disabled = false;
+            button.classList.remove("btn-outline-secondary");
+            button.classList.add("btn-primary");
         }
     }
 </script>
