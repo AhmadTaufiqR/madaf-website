@@ -137,12 +137,23 @@
                     <!-- pembayaran -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Pembayaran</span>
                     <li class="menu-item">
-                        <a class="menu-link">
-                            {{-- <i class="menu-icon tf-icons bx bx-store"></i> --}}
-                            <div data-i18n="Analytics">Coming Soon</div>
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-credit-card"></i>
+                            <div data-i18n="Pembayaran">Pembayaran</div>
                         </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Infaq">Infaq</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div data-i18n="Uang Makan">Uang Makan</div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-
                 </ul>
             </aside>
             <!-- / Menu -->
@@ -228,7 +239,7 @@
                             <script>
                                 document.write(new Date().getFullYear());
                             </script>
-                            , made with ❤️ by 
+                            , made with ❤️ by
                             <a target="_blank" class="footer-link fw-bolder"
                                 style="pointer-events: none; cursor: default; margin-left: 5px"> Burga</a>
                         </div>

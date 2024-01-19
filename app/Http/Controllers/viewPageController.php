@@ -27,11 +27,13 @@ class viewPageController extends Controller
     }
 
     function santriView() {
-        return view('template.template_santri');
+        $santri = User::where('level', '=', 'santri')->paginate(10);
+        return view('template.template_santri', compact('santri'));
     }
     
     function pengurusView() {
-        return view('template.template_pengurus');
+        $pengurus = User::where('level', '=', 'pengurus')->paginate(10);
+        return view('template.template_pengurus', compact('pengurus'));
     }
 
     function koperasiView() {

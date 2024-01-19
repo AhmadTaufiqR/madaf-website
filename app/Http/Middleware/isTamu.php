@@ -23,7 +23,7 @@ class isTamu
             if ($userLevel === 'owner') {
                 return redirect('dashboard')->withErrors('Anda sudah login sebagai owner');
             } elseif ($userLevel === 'admin') {
-                return redirect('toko-admin')->withErrors('Anda sudah login sebagai admin');
+                return redirect('dashboard')->withErrors('Anda sudah login sebagai admin');
             }
         }
     
