@@ -16,17 +16,15 @@
         <!-- Contextual Classes -->
         <div class="card">
             <h5 class="card-header">Daftar Koperasi</h5>
-            <div class=" text-nowrap" style="overflow-x: auto">
+            <div class=" table-responsive text-nowrap" style="overflow-x: auto">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nama Toko</th>
+                            <th>#</th>
+                            <th>Nama Koperasi</th>
                             <th>Pemilik</th>
                             <th>Alamat</th>
-                            <th>Kecamatan</th>
-                            <th>Kabupaten</th>
-                            <th>Tanggal Gabung</th>
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,17 +32,15 @@
                             $no = 0;
                         @endphp
 
-                        {{-- @foreach ($stores as $store)
+                        @foreach ($koperasi as $store)
                             @if ($no++ % 2 == 0)
                                 <tr class="table-active">
+                                    <td>{{ $loop->iteration }}</td>
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
                                         <strong>{{ $store->name }}</strong>
                                     </td>
                                     <td>{{ $store->owner }}</td>
                                     <td>{{ $store->address }}</td>
-                                    <td>{{ $store->kecamatan }}</td>
-                                    <td>{{ $store->kabupaten }}</td>
-                                    <td>{{ $store->date }}</td>
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown">
@@ -69,7 +65,7 @@
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel3">Edit Toko</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel3">Edit Koperasi</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -79,7 +75,7 @@
                                                     autocomplete="off">
                                                     @csrf
                                                     <div class="mt-2">
-                                                        <label class="form-label" for="name">Nama Toko</label>
+                                                        <label class="form-label" for="name">Nama Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
                                                                 value="{{ $store->name }}" name="name_add"
@@ -88,7 +84,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <label class="form-label" for="name">Pemilik Toko</label>
+                                                        <label class="form-label" for="name">Pemilik Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
                                                                 value="{{ $store->owner }}" name="owner_add"
@@ -99,7 +95,7 @@
                                                     <div class="mt-2">
                                                         <label class="form-label" for="alamat">Alamat</label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" name="address_add" placeholder="Alamat Toko" cols="10" rows="4">{{ $store->address }}</textarea>
+                                                            <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4">{{ $store->address }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -117,14 +113,12 @@
                                 </div>
                             @else
                                 <tr class="table-default">
+                                    <td>{{ $loop->iteration }}</td>
                                     <td><i class="fab fa-sketch fa-lg text-warning me-3"></i>
                                         <strong>{{ $store->name }}</strong>
                                     </td>
                                     <td>{{ $store->owner }}</td>
                                     <td>{{ $store->address }}</td>
-                                    <td>{{ $store->kecamatan }}</td>
-                                    <td>{{ $store->kabupaten }}</td>
-                                    <td>{{ $store->date }}</td>
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown">
@@ -150,7 +144,7 @@
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel3">Edit Toko</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel3">Edit Koperasi</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -160,7 +154,7 @@
                                                     autocomplete="off">
                                                     @csrf
                                                     <div class="mt-2">
-                                                        <label class="form-label" for="name">Nama Toko</label>
+                                                        <label class="form-label" for="name">Nama Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
                                                                 value="{{ $store->name }}" name="name_add"
@@ -169,7 +163,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <label class="form-label" for="name">Pemilik Toko</label>
+                                                        <label class="form-label" for="name">Pemilik Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
                                                                 value="{{ $store->owner }}" name="owner_add"
@@ -180,7 +174,7 @@
                                                     <div class="mt-2">
                                                         <label class="form-label" for="alamat">Alamat</label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" name="address_add" placeholder="Alamat Toko" cols="10" rows="4">{{ $store->address }}</textarea>
+                                                            <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4">{{ $store->address }}</textarea>
                                                         </div>
                                                     </div>
 
@@ -199,7 +193,7 @@
                                     </div>
                                 </div>
                             @endif
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
 
                 </table>
@@ -212,65 +206,40 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Toko</h5>
+                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Koperasi</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="stores/add-stores" class="demo-vertical-spacing demo-only-element"
+                        <form action="register-user-koperasi/check" class="demo-vertical-spacing demo-only-element"
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">
-                                <label class="form-label" for="name">Nama Toko</label>
+                                <label class="form-label" for="name">Nama Koperasi <span style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="name_add" placeholder="Name"
-                                        aria-label="Name" aria-describedby="basic-addon11" required />
+                                    <input type="text" class="form-control" name="name_add" placeholder="Name" value="{{ Session::get('name') }}"
+                                        aria-label="Name" aria-describedby="basic-addon11" required onkeyup="check_add()"/>
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="name">Pemilik Toko</label>
+                                <label class="form-label" for="name">Pemilik Koperasi <span style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="owner_add" placeholder="Name"
-                                        aria-label="Name" aria-describedby="basic-addon11" required />
+                                    <input type="text" class="form-control" name="owner_add" placeholder="Name" value="{{ Session::get('owner') }}"
+                                        aria-label="Name" aria-describedby="basic-addon11" required onkeyup="check_add()"/>
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="alamat">Alamat</label>
+                                <label class="form-label" for="alamat">Alamat <span style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <textarea class="form-control" name="address_add" placeholder="Alamat Toko" cols="10" rows="4"></textarea>
+                                    <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4" onkeyup="check_add()"></textarea>
                                 </div>
                             </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="kecamatan">Kecamatan</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="kecamatan_add"
-                                        placeholder="kecamatan" aria-label="kecamatan"
-                                        aria-describedby="basic-addon11" required />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="kabupaten">Kabupaten</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="kabupaten_add"
-                                        placeholder="kabupaten" aria-label="kabupaten"
-                                        aria-describedby="basic-addon11" required />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="date">Tanggal Gabung</label>
-                                <div class="input-group">
-                                    <input type="date" class="form-control" name="date_add" placeholder="date"
-                                        aria-label="date" aria-describedby="basic-addon11" required />
-                                </div>
-                            </div>
-
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
                                 <button type="submit" name="submit" id="btn_save_add"
-                                    class="btn btn-primary">Save</button>
+                                    class="btn btn-outline-secondary" disabled>Save</button>
                             </div>
                         </form>
 
@@ -280,6 +249,48 @@
         </div>
 
 
-        {{-- {{ $stores->links('vendor.pagination.custom') }} --}}
+        {{ $koperasi->links('vendor.pagination.custom') }}
     </div>
 </div>
+
+<script>
+    function check_add() {
+        var name = document.querySelector('input[name=name_add]');
+        var owner = document.querySelector('input[name=owner_add]');
+        var address = document.querySelector('textarea[name=address_add]');
+        var button = document.getElementById('btn_save_add');
+
+        if (name.value === '') {
+            button.disabled = true
+            button.classList.remove("btn-primary")
+            button.classList.add("btn-outline-secondary")
+        } else if (owner.value === '') {
+            button.disabled = true
+            button.classList.remove("btn-primary")
+            button.classList.add("btn-outline-secondary")
+        } else if (address.value === '') {
+            button.disabled = true
+            button.classList.remove("btn-primary")
+            button.classList.add("btn-outline-secondary")
+        } else {
+            button.disabled = false
+            button.classList.remove("btn-outline-secondary")
+            button.classList.add("btn-primary")
+        }
+
+        // if (confirm_password_add.value === '') {
+        //     message.innerHTML = '';
+        // } else if (password_add.value !== confirm_password_add.value) {
+        //     message.innerHTML = 'Password tidak cocok';
+        //     message.style.color = 'red';
+        //     button.disabled = true;
+        //     button.classList.remove("btn-primary");
+        //     button.classList.add("btn-outline-secondary");
+        // } else {
+        //     message.innerHTML = '';
+        //     button.disabled = false;
+        //     button.classList.remove("btn-outline-secondary");
+        //     button.classList.add("btn-primary");
+        // }
+    }
+</script>

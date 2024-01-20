@@ -121,13 +121,13 @@
                             <div data-i18n="Analytics">Pengurus</div>
                         </a>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="santri" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-group"></i>
                             <div data-i18n="Analytics">Santri</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="kasir" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-user-badge"></i>
                             <div data-i18n="Analytics">Kasir</div>
@@ -242,7 +242,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    @include('main.santri')
+                    @include('main.kasir')
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">

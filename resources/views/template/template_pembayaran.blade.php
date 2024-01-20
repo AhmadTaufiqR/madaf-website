@@ -8,9 +8,9 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Burga : Santri Burga</title>
+    <title>Burga: Koperasi Burga</title>
 
-    <meta name="description" content="Burga : Dashboard Burga" />
+    <meta name="description" content="" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/assets/img/favicon/icon3.ico" />
@@ -37,7 +37,6 @@
     <!-- Helpers -->
     <script src="assets/assets/vendor/js/helpers.js"></script>
     <script src="assets/assets/js/config.js"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -48,6 +47,7 @@
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <!-- Menu -->
+
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="/" class="app-brand-link">
@@ -121,7 +121,7 @@
                             <div data-i18n="Analytics">Pengurus</div>
                         </a>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="santri" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-group"></i>
                             <div data-i18n="Analytics">Santri</div>
@@ -160,7 +160,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="pembayaran" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-credit-card"></i>
                             <div data-i18n="Analytics">Pembayaran</div>
@@ -173,6 +173,7 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
+
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
@@ -242,7 +243,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    @include('main.santri')
+                    @include('main.pembayaran')
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">
@@ -270,7 +271,6 @@
     </div>
     <!-- / Layout wrapper -->
 
-    <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="assets/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="assets/assets/vendor/libs/popper/popper.js"></script>
@@ -302,6 +302,7 @@
             toastr.success("{{ Session::get('success') }}");
         </script>
     @endif
+
 </body>
 
 </html>

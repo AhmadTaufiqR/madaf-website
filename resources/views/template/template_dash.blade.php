@@ -123,8 +123,14 @@
                     </li>
                     <li class="menu-item">
                         <a href="santri" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user-circle"></i>
+                            <i class="menu-icon tf-icons bx bx-group"></i>
                             <div data-i18n="Analytics">Santri</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="kasir" class="menu-link">
+                            <i class="menu-icon tf-icons bx bxs-user-badge"></i>
+                            <div data-i18n="Analytics">Kasir</div>
                         </a>
                     </li>
                     <li class="menu-item">
@@ -138,21 +144,27 @@
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Pembayaran</span>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class="menu-icon tf-icons bx bx-credit-card"></i>
-                            <div data-i18n="Pembayaran">Pembayaran</div>
+                            <i class="menu-icon tf-icons bx bx-money"></i>
+                            <div data-i18n="Pembayaran"> List Pembayaran</div>
                         </a>
                         <ul class="menu-sub">
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="infaq" class="menu-link">
                                     <div data-i18n="Infaq">Infaq</div>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="#" class="menu-link">
+                                <a href="uang-makan" class="menu-link">
                                     <div data-i18n="Uang Makan">Uang Makan</div>
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="menu-item">
+                        <a href="pembayaran" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-credit-card"></i>
+                            <div data-i18n="Analytics">Pembayaran</div>
+                        </a>
                     </li>
                 </ul>
             </aside>

@@ -37,7 +37,23 @@ class viewPageController extends Controller
     }
 
     function koperasiView() {
-        return view('template.template_toko_admin');
+        $koperasi = store::paginate(10);
+        return view('template.template_koperasi', compact('koperasi'));
+    }
+
+    function kasirView() {
+        $kasir = User::where('level', '=', 'kasir')->paginate(10);
+        return view('template.template_kasir', compact('kasir'));
+    }
+
+    function infaqView() {
+        return view('template.template_pembayaran_infaq');
+    }
+    function uangMakanView() {
+        return view('template.template_pembayaran_uang_makan');
+    }
+    function pembayaranView() {
+        return view('template.template_pembayaran');
     }
 
     // function users_view()
