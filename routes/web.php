@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', [viewPageController::class, 'landing_view']);
 Route::get('/', [AuthController::class, 'index_login'])->middleware('isHome');
 
 
@@ -29,25 +28,14 @@ Route::middleware(['isLogin'])->group(function () {
     Route::get('santri', [viewPageController::class, 'santriView']);
     Route::get('pengurus', [viewPageController::class, 'pengurusView']);
     Route::get('koperasi', [viewPageController::class, 'koperasiView']);
-    // Route::get('product-in', [viewPageController::class, 'product_in_view']);
-    // Route::get('users', [viewPageController::class, 'users_view']);
-    // Route::get('product-out', [viewPageController::class, 'product_out_view']);
-    // Route::get('stok', [viewPageController::class, 'stok_view']);
-    // Route::get('store', [viewPageController::class, 'store_view']);
-    // Route::get('report', [viewPageController::class, 'report_view']);
+    Route::get('kasir', [viewPageController::class, 'kasirView']);
+    Route::get('infaq', [viewPageController::class, 'infaqView']);
+    Route::get('uang-makan', [viewPageController::class, 'uangMakanView']);
+    Route::get('pembayaran', [viewPageController::class, 'pembayaranView']);
 });
 
-// Route::middleware(['isLogin'])->group(function () {
-//     Route::get('toko-admin', [viewPageController::class, 'store_view_admin']);
-//     Route::get('barang-admin', [viewPageController::class, 'stok_view_admin']);
-//     Route::get('product-in-admin', [viewPageController::class, 'product_in_view_admin']);
-//     Route::get('product-out-admin', [viewPageController::class, 'product_out_view_admin']);
-// });
-
-// Route::get('get-profile', [OwnerController::class, 'growUp']);
 
 Route::prefix('login')->group(function () {
-    // Route::get('/', [AuthController::class, 'index_login'])->middleware('isHome');
     Route::post('check', [AuthController::class, 'check_login'])->middleware('isHome');
 });
 
@@ -58,36 +46,29 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('register-user-pengurus')->group(function () {
     Route::post('check', [OwnerController::class, 'add_pengurus'])->middleware('isLogin');
-    Route::post('update/{id}', [OwnerController::class, 'update'])->middleware('isLogin');
-    Route::post('update-password/{id}', [OwnerController::class, 'update_password'])->middleware('isLogin');
-    Route::delete('delete/{id}', [OwnerController::class, 'destroy'])->middleware('isLogin')->name('users.destroy');
+    Route::post('update/{id}', [OwnerController::class, 'update_pengurus'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'update_password_pengurus'])->middleware('isLogin');
+    Route::delete('delete/{id}', [OwnerController::class, 'destroy_pengurus'])->middleware('isLogin')->name('users.destroy');
 });
 
 Route::prefix('register-user-santri')->group(function () {
     Route::post('check', [OwnerController::class, 'add_santri'])->middleware('isLogin');
-    Route::post('update/{id}', [OwnerController::class, 'update'])->middleware('isLogin');
-    Route::post('update-password/{id}', [OwnerController::class, 'update_password'])->middleware('isLogin');
-    Route::delete('delete/{id}', [OwnerController::class, 'destroy'])->middleware('isLogin')->name('users.destroy');
+    Route::post('update/{id}', [OwnerController::class, 'update_santri'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'update_password_santri'])->middleware('isLogin');
+    Route::delete('delete/{id}', [OwnerController::class, 'destroy_santri'])->middleware('isLogin')->name('users.destroy');
 });
 
-// Route::prefix('product-in')->group(function () {
-//     Route::post('add-product', [AdminController::class, 'add_barang_masuk'])->middleware('isLogin');
-//     Route::post('update-product/{id}', [AdminController::class, 'edit_ins'])->middleware('isLogin');
-//     Route::delete('delete-product/{id}', [AdminController::class, 'delete_product_in'])->middleware('isLogin');
-// });
-// Route::prefix('stores')->group(function () {
-//     Route::post('add-stores', [AdminController::class, 'adding_stores'])->middleware('isLogin');
-//     Route::post('update-stores/{id}', [AdminController::class, 'edit_store'])->middleware('isLogin');
-//     Route::delete('delete-stores/{id}', [AdminController::class, 'delete_store'])->middleware('isLogin');
-// });
-// Route::prefix('products')->group(function () {
-//     Route::delete('delete-product/{id}', [AdminController::class, 'delete_product'])->middleware('isLogin');
-// });
-// Route::prefix('product-out')->group(function () {
-//     Route::post('add-out', [AdminController::class, 'add_product_out'])->middleware('isLogin');
-//     Route::post('edit-out/{id}', [AdminController::class, 'edit_product_out'])->middleware('isLogin');
-//     Route::post('add-product-out/{id}', [AdminController::class, 'add_product_on_product_out'])->middleware('isLogin');
-//     Route::delete('delete-out/{id}', [AdminController::class, 'delete_product_out'])->middleware('isLogin');
-// });
+Route::prefix('register-user-kasir')->group(function () {
+    Route::post('check', [OwnerController::class, 'add_kasir'])->middleware('isLogin');
+    Route::post('update/{id}', [OwnerController::class, 'update_kasir'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'update_password_kasir'])->middleware('isLogin');
+    Route::delete('delete/{id}', [OwnerController::class, 'destroy_kasir'])->middleware('isLogin')->name('users.destroy');
+});
+
+Route::prefix('register-user-koperasi')->group(function () {
+    Route::post('check', [OwnerController::class, 'adding_koperasi'])->middleware('isLogin');
+    Route::post('update-koperasi/{id}', [OwnerController::class, 'edit_koperasi'])->middleware('isLogin');
+    Route::delete('delete-koperasi/{id}', [OwnerController::class, 'delete_koperasi'])->middleware('isLogin');
+});
 
 Route::get('logout', [AuthController::class, 'logout']);

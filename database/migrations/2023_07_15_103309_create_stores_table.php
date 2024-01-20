@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('owner');
             $table->string('address');
-            $table->string('image');
+            $table->string('image')->nullable(true);
             $table->integer('balance');
             $table->softDeletes();
             $table->timestamps();

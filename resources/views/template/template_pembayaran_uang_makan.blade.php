@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!<!DOCTYPE html>
 
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
     data-assets-path="assets/assets/">
@@ -121,7 +121,7 @@
                             <div data-i18n="Analytics">Pengurus</div>
                         </a>
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="santri" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-group"></i>
                             <div data-i18n="Analytics">Santri</div>
@@ -142,7 +142,7 @@
 
                     <!-- pembayaran -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Pembayaran</span>
-                    <li class="menu-item">
+                    <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-money"></i>
                             <div data-i18n="Pembayaran"> List Pembayaran</div>
@@ -153,7 +153,7 @@
                                     <div data-i18n="Infaq">Infaq</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item active">
                                 <a href="uang-makan" class="menu-link">
                                     <div data-i18n="Uang Makan">Uang Makan</div>
                                 </a>
@@ -242,7 +242,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    @include('main.santri')
+                    @include('main.pembayaran_uang_makan')
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">

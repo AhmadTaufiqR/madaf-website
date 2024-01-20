@@ -1,13 +1,13 @@
 <div class="content-wrapper" style="overflow-x: auto">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Pembayaran</h4>
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Uang Makan</h4>
         <!-- Bootstrap Toasts with Placement -->
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row gx-3 gy-2 align-items-center">
                     <div class="col-md-3">
                         <button id="showToastPlacement" type="button" data-bs-toggle="modal"
-                            data-bs-target="#largeModal" class="btn btn-primary d-block">Tambah Pembayaran</button>
+                            data-bs-target="#largeModal" class="btn btn-primary d-block">Tambah Uang Makan</button>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
         <!--/ Bootstrap Toasts with Placement -->
         <!-- Contextual Classes -->
         <div class="card">
-            <h5 class="card-header">Pembayaran</h5>
+            <h5 class="card-header">Uang Makan</h5>
             <div class="text-nowrap" style="overflow-x: auto">
                 <table class="table">
                     <thead>
@@ -32,7 +32,7 @@
                         @php
                             $no = 0;
                         @endphp
-                        {{-- @foreach ($Pembayaran as $user)
+                        {{-- @foreach ($Uang Makan as $user)
                             @if ($no++ % 2 == 0)
                                 <tr class="table-active">
                                     <td>{{ $loop->iteration }}</td>
@@ -349,7 +349,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Pembayaran</h5>
+                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Uang Makan</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -381,12 +381,12 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Pembayaran</h5>
+                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Uang Makan</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="register-user-Pembayaran/check" class="demo-vertical-spacing demo-only-element"
+                        <form action="register-user-Uang Makan/check" class="demo-vertical-spacing demo-only-element"
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">
@@ -467,7 +467,7 @@
                 </div>
             </div>
         </div>
-        {{-- {{ $Pembayaran->links('vendor.pagination.custom') }} --}}
+        {{-- {{ $Uang Makan->links('vendor.pagination.custom') }} --}}
     </div>
 </div>
 
