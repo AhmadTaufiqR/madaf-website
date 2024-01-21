@@ -211,7 +211,7 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="register-user-koperasi/check" class="demo-vertical-spacing demo-only-element"
+                        <form action="register-koperasi/check" class="demo-vertical-spacing demo-only-element"
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">

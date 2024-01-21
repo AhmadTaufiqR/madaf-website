@@ -45,30 +45,36 @@ Route::prefix('login')->group(function () {
 // });
 
 Route::prefix('register-user-pengurus')->group(function () {
-    Route::post('check', [OwnerController::class, 'add_pengurus'])->middleware('isLogin');
-    Route::post('update/{id}', [OwnerController::class, 'update_pengurus'])->middleware('isLogin');
-    Route::post('update-password/{id}', [OwnerController::class, 'update_password_pengurus'])->middleware('isLogin');
+    Route::post('check', [OwnerController::class, 'addPengurus'])->middleware('isLogin');
+    Route::post('update/{id}', [OwnerController::class, 'updatePengurus'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'updatePasswordPengurus'])->middleware('isLogin');
     Route::delete('delete/{id}', [OwnerController::class, 'destroy_pengurus'])->middleware('isLogin')->name('users.destroy');
 });
 
 Route::prefix('register-user-santri')->group(function () {
-    Route::post('check', [OwnerController::class, 'add_santri'])->middleware('isLogin');
-    Route::post('update/{id}', [OwnerController::class, 'update_santri'])->middleware('isLogin');
-    Route::post('update-password/{id}', [OwnerController::class, 'update_password_santri'])->middleware('isLogin');
-    Route::delete('delete/{id}', [OwnerController::class, 'destroy_santri'])->middleware('isLogin')->name('users.destroy');
+    Route::post('check', [OwnerController::class, 'addSantri'])->middleware('isLogin');
+    Route::post('update/{id}', [OwnerController::class, 'updateSantri'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'updatePasswordSantri'])->middleware('isLogin');
+    Route::delete('delete/{id}', [OwnerController::class, 'destroySantri'])->middleware('isLogin')->name('users.destroy');
 });
 
 Route::prefix('register-user-kasir')->group(function () {
-    Route::post('check', [OwnerController::class, 'add_kasir'])->middleware('isLogin');
-    Route::post('update/{id}', [OwnerController::class, 'update_kasir'])->middleware('isLogin');
-    Route::post('update-password/{id}', [OwnerController::class, 'update_password_kasir'])->middleware('isLogin');
-    Route::delete('delete/{id}', [OwnerController::class, 'destroy_kasir'])->middleware('isLogin')->name('users.destroy');
+    Route::post('check', [OwnerController::class, 'addKasir'])->middleware('isLogin');
+    Route::post('update/{id}', [OwnerController::class, 'updateKasir'])->middleware('isLogin');
+    Route::post('update-password/{id}', [OwnerController::class, 'updatePasswordKasir'])->middleware('isLogin');
+    Route::delete('delete/{id}', [OwnerController::class, 'destroyKasir'])->middleware('isLogin')->name('users.destroy');
 });
 
-Route::prefix('register-user-koperasi')->group(function () {
-    Route::post('check', [OwnerController::class, 'adding_koperasi'])->middleware('isLogin');
-    Route::post('update-koperasi/{id}', [OwnerController::class, 'edit_koperasi'])->middleware('isLogin');
-    Route::delete('delete-koperasi/{id}', [OwnerController::class, 'delete_koperasi'])->middleware('isLogin');
+Route::prefix('register-koperasi')->group(function () {
+    Route::post('check', [OwnerController::class, 'addingKoperasi'])->middleware('isLogin');
+    Route::post('update-koperasi/{id}', [OwnerController::class, 'editKoperasi'])->middleware('isLogin');
+    Route::delete('delete-koperasi/{id}', [OwnerController::class, 'deleteKoperasi'])->middleware('isLogin');
+});
+
+Route::prefix('payment-infaq')->group(function () {
+    Route::post('check', [OwnerController::class, 'addingInfaq'])->middleware('isLogin');
+    Route::post('update-payment-infaq/{id}', [OwnerController::class, 'editInfaq'])->middleware('isLogin');
+    Route::delete('delete-payment-infaq/{id}', [OwnerController::class, 'deleteInfaq'])->middleware('isLogin');
 });
 
 Route::get('logout', [AuthController::class, 'logout']);

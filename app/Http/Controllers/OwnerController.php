@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\detail_product_out;
+use App\Models\payment_infaq;
 use App\Models\product;
 use App\Models\product_out;
 use App\Models\store;
@@ -22,7 +23,7 @@ class OwnerController extends Controller
         return view('register.register');
     }
 
-    function add_pengurus(Request $request)
+    function addPengurus(Request $request)
     {
 
         $pengurus = new User();
@@ -60,7 +61,7 @@ class OwnerController extends Controller
     }
 
 
-    function add_santri(Request $request)
+    function addSantri(Request $request)
     {
         $santri = new User();
         Session::flash('name', $request->name_add);
@@ -100,8 +101,8 @@ class OwnerController extends Controller
             return redirect('santri')->withErrors('Silahkan masukkan kembali');
         }
     }
-    
-    function add_kasir(Request $request)
+
+    function addKasir(Request $request)
     {
         $santri = new User();
         Session::flash('name', $request->name_add);
@@ -145,48 +146,81 @@ class OwnerController extends Controller
 
 
 
-    function adding_koperasi(Request $request){
+    function addingKoperasi(Request $request)
+    {
 
         Session::flash('name', $request->input('name_add'));
         Session::flash('owner', $request->input('owner_add'));
         Session::flash('address', $request->input('address_add'));
-        
+
         $add_stores = new store();
-        
+
         $add_stores->name = $request->input('name_add');
         $add_stores->owner = $request->input('owner_add');
         $add_stores->address = $request->input('address_add');
         $add_stores->save();
-        
+
         if ($add_stores) {
             return redirect('koperasi')->with('success', 'Koperasi berhasil ditambahkan');
         } else {
             return redirect('koperasi')->withErrors('Silahkan Masukkan kembali');
         }
     }
-    
-    function edit_koperasi(Request $request, $id) {
+
+    function editKoperasi(Request $request, $id)
+    {
         $edit_store = store::find($id);
-        
+
         if ($edit_store) {
             $edit_store->name = $request->input('name_add');
             $edit_store->owner = $request->input('owner_add');
             $edit_store->address = $request->input('address_add');
             $edit_store->save();
-            
+
             return redirect('toko-admin')->with('success', 'Data berhasil diubah');
         }
         return redirect('toko-admin')->withErrors('Silahkan isikan kembali');
     }
-    
-    function delete_koperasi($id) {
+
+    function deleteKoperasi($id)
+    {
         $delete_store = store::find($id);
-        
-        if($delete_store){
+
+        if ($delete_store) {
             $delete_store->delete();
             return redirect('toko-admin')->with('success', ' Data berhasil dihapus');
         }
         return redirect('toko-admin')->withErrors('Silahkan ulangi kembali');
+    }
+
+    //Bagian Infaq
+    function addingInfaq(Request $request)
+    {
+
+        $payment = new payment_infaq();
+
+        $payment->month = $request->input('month_selected_add');
+        $payment->category = $request->input('category_selected_add');
+        $payment->amount = $request->input('amount_add');
+        $payment->save();
+
+        if ($payment) {
+            $categories = ['MIMA', 'KULIAH', 'MTS', 'MAN', 'SMK'];
+
+            foreach ($categories as $category) {
+                $users = User::where('category', $category)->get();
+                $paymentInfaqs = payment_infaq::where('category', $category)->get();
+
+                foreach ($users as $user) {
+                    foreach ($paymentInfaqs as $paymentInfaq) {
+                        $user->paymentInfaqs()->sync($paymentInfaq);
+                    }
+                }
+            }
+            return redirect('infaq')->with('success', 'Infaq berhasil ditambahkan');
+        } else {
+            return redirect('infaq')->withErrors('Silahkan Masukkan kembali');
+        }
     }
 
 
