@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Burga : Dashboard Burga</title>
+    <title>Burga : Pengurus Burga</title>
 
     <meta name="description" content="Burga : Dashboard Burga" />
 
@@ -105,7 +105,7 @@
 
                 <ul class="menu-inner py-4">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="dashboard" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
@@ -115,7 +115,7 @@
                     <!-- Components -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Daftar List User</span>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="pengurus" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i>
                             <div data-i18n="Analytics">Pengurus</div>
@@ -242,7 +242,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    @include('main.dashboard')
+                    @include('main.pengurus')
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">

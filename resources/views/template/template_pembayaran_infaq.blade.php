@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!<!DOCTYPE html>
 
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
     data-assets-path="assets/assets/">
@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Burga : Dashboard Burga</title>
+    <title>Burga : Santri Burga</title>
 
     <meta name="description" content="Burga : Dashboard Burga" />
 
@@ -105,7 +105,7 @@
 
                 <ul class="menu-inner py-4">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="dashboard" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
@@ -142,13 +142,13 @@
 
                     <!-- pembayaran -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Pembayaran</span>
-                    <li class="menu-item">
+                    <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-money"></i>
                             <div data-i18n="Pembayaran"> List Pembayaran</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item">
+                            <li class="menu-item active">
                                 <a href="infaq" class="menu-link">
                                     <div data-i18n="Infaq">Infaq</div>
                                 </a>
@@ -242,7 +242,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    @include('main.dashboard')
+                    @include('main.pembayaran_infaq')
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,12 +19,22 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'name',
-        'username',
         'email',
+        'address',
         'password',
-        'level'
+        'level',
+        'username',
+        'uuid',
+        'pin',
+        'balance',
+        'category'
     ];
+
+    public function paymentInfaqs() {
+        return $this->belongsToMany(payment_infaq::class, 'user_payment_relations', 'users_id', 'payment_infaqs_id')->withTimestamps();
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,16 +54,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // Metode untuk memeriksa apakah pengguna memiliki peran admin
-    public function isAdmin()
-    {
-        return $this->role === 'admin';
-    }
-
-    // Metode untuk memeriksa apakah pengguna memiliki peran pemilik
-    public function isOwner()
-    {
-        return $this->role === 'owner';
-    }
 }

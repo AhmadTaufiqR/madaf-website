@@ -7,10 +7,10 @@
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Halo, Taufiq</h5>
+                            <!-- Berubah sesuai dengan loginnya -->
+                            <h5 class="card-title text-primary">Halo, DIubah disnini yah</h5>
                             <p class="mb-4">
-                                Selamat Pagi, dan selamat datang di halaman utama <br> <span class="fw-bold">PT. Sinar
-                                    Sahabat Indonesia</span>
+                                Selamat Pagi, dan selamat datang di halaman utama <br> <span class="fw-bold">Burga Company</span>
                             </p>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Pendapatan</span>
-                            <h3 class="card-title mb-2">Rp. {{ $getTransaction[0] }}</h3>
+                            <h3 class="card-title mb-2">Rp. 0</h3>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Produk Terjual</span>
-                            <h3 class="card-title text-nowrap mb-1">{{ $getTransaction[2] }}</h3>
+                            <h3 class="card-title text-nowrap mb-1">0</h3>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Belum Lunas</span>
-                            <h3 class="card-title text-nowrap mb-2">{{ $getTransaction[3] }}</h3>
+                            <h3 class="card-title text-nowrap mb-2">0</h3>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Transaksi</span>
-                            <h3 class="card-title mb-2">{{ $getTransaction[1] }}</h3>
+                            <h3 class="card-title mb-2">0</h3>
                         </div>
                     </div>
                 </div>
@@ -138,11 +138,11 @@
                                 <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                     <div class="card-title">
                                         <h5 class="text-nowrap mb-2">Transaksi Lunas</h5>
-                                        <span class="badge bg-label-warning rounded-pill">{{ $getTransaction[4] }}</span>
+                                        <span class="badge bg-label-warning rounded-pill">0</span>
                                     </div>
                                     <div class="mt-sm-auto">
                                         <small class="text-success text-nowrap fw-semibold"></small>
-                                        <h3 class="mb-0">{{ $getTransaction[0] }}</h3>
+                                        <h3 class="mb-0">0</h3>
                                     </div>
                                 </div>
                                 <div id="profileReportChart"></div>

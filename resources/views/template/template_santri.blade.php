@@ -8,7 +8,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Burga : Dashboard Burga</title>
+    <title>Burga : Santri Burga</title>
 
     <meta name="description" content="Burga : Dashboard Burga" />
 
@@ -105,7 +105,7 @@
 
                 <ul class="menu-inner py-4">
                     <!-- Dashboard -->
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="dashboard" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
@@ -121,7 +121,7 @@
                             <div data-i18n="Analytics">Pengurus</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="santri" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-group"></i>
                             <div data-i18n="Analytics">Santri</div>
@@ -242,7 +242,7 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
-                    @include('main.dashboard')
+                    @include('main.santri')
 
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">
