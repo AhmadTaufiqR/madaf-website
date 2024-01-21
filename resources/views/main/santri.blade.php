@@ -409,6 +409,18 @@
                                 </div>
                             </div>
                             <div class="mt-2">
+                                <label class="form-label" for="price">Sekolah <span style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <select id="selectmethod" class="form-select" required name="category_selected_add"
+                                        required>
+                                        <option value="default">Silahkan dipilih</option>
+                                        <option value="MTS">MTS</option>
+                                        <option value="MAN">MAN</option>
+                                        <option value="SMK">SMK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-2">
                                 <label class="form-label" for="email">Email</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon11">@</span>

@@ -84,6 +84,7 @@ class OwnerController extends Controller
 
         $santri->name = $request->input('name_add');
         $santri->username = $request->input('username_add');
+        $santri->category = $request->input('category_selected_add');
         if ($request->input('email_add') != '') {
             $santri->email = $request->input('email_add');
         }
