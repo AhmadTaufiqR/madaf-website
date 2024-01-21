@@ -28,8 +28,13 @@ class User extends Authenticatable
         'username',
         'uuid',
         'pin',
-        'balance'
+        'balance',
+        'category'
     ];
+
+    public function paymentInfaqs() {
+        return $this->belongsToMany(payment_infaq::class, 'user_payment_relations', 'users_id', 'payment_infaqs_id')->withTimestamps();
+    }
 
     /**
      * The attributes that should be hidden for serialization.

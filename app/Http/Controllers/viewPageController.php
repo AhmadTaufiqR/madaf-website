@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\detail_product_out;
 use App\Models\laporan;
+use App\Models\payment_infaq;
 use App\Models\product;
 use App\Models\product_in;
 use App\Models\product_out;
@@ -47,7 +48,8 @@ class viewPageController extends Controller
     }
 
     function infaqView() {
-        return view('template.template_pembayaran_infaq');
+        $infaq = payment_infaq::orderBy('id', 'desc')->paginate(10);
+        return view('template.template_pembayaran_infaq', compact('infaq'));
     }
     function uangMakanView() {
         return view('template.template_pembayaran_uang_makan');

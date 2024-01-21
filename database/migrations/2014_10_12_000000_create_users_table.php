@@ -18,13 +18,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique()->nullable(true);
             $table->string('username')->unique()->nullable(true);
-            $table->string('uuid')->nullable(true);
+            $table->string('uuid')->unique()->nullable(true);
             $table->integer('pin')->nullable(true);
             $table->integer('balance')->nullable(true);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('address')->nullable(true);
             $table->string('level');
+            $table->string('category')->nullable(true);
             $table->rememberToken();
             // $table->softDeletes();
             $table->timestamps();

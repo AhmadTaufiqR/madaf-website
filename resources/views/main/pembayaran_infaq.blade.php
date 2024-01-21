@@ -21,35 +21,26 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Username</th>
-                            <th>Alamat</th>
-                            <th>Actions</th>
+                            <th>Bulan</th>
+                            <th>Tahun</th>
+                            <th>Kelas</th>
+                            <th>Jumlah</th>
                         </tr>
                     </thead>
                     <tbody>
                         @php
                             $no = 0;
                         @endphp
-                        {{-- @foreach ($Infaq as $user)
+                        @foreach ($infaq as $user)
                             @if ($no++ % 2 == 0)
                                 <tr class="table-active">
                                     <td>{{ $loop->iteration }}</td>
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
-                                        <strong>{{ $user->name }}</strong>
+                                        <strong>{{ $user->month }}</strong>
                                     </td>
-                                    @if ($user->email == null)
-                                        <td>-</td>
-                                    @else
-                                        <td>{{ $user->email }}</td>
-                                    @endif
-                                    <td>{{ $user->username }}</td>
-                                    @if ($user->address == null)
-                                        <td>-</td>
-                                    @else
-                                        <td><span class="badge bg-label-success me-1">{{ $user->address }}</span></td>
-                                    @endif
+                                    <td>-</td>
+                                    <td>{{ $user->amount }}</td>
+                                    <td>{{ $user->category }}</td>
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown">
@@ -189,19 +180,11 @@
                                 <tr class="table-default">
                                     <td>{{ $loop->iteration }}</td>
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
-                                        <strong>{{ $user->name }}</strong>
+                                        <strong>{{ $user->month }}</strong>
                                     </td>
-                                    @if ($user->email == null)
-                                        <td>-</td>
-                                    @else
-                                        <td>{{ $user->email }}</td>
-                                    @endif
-                                    <td>{{ $user->username }}</td>
-                                    @if ($user->address == null)
-                                        <td>-</td>
-                                    @else
-                                        <td><span class="badge bg-label-success me-1">{{ $user->address }}</span></td>
-                                    @endif
+                                    <td>-</td>
+                                    <td>{{ $user->amount }}</td>
+                                    <td>{{ $user->category }}</td>
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                             data-bs-toggle="dropdown">
@@ -338,41 +321,9 @@
                                     </div>
                                 </div>
                             @endif
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <!-- Large Modal Export Exel -->
-        <div class="modal fade" id="largeModalExportExel" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel3">Tambah Infaq</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="register-user/check" class="demo-vertical-spacing demo-only-element"
-                            method="POST" autocomplete="off" enctype="multipart/form-data">
-                            @csrf
-                            <div class="mt-2">
-                                <label class="form-label" for="name">File Exel</label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" accept=".xls, .xlsx, .csv"
-                                        name="fileExel" aria-describedby="basic-addon11" onkeyup="" required />
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="showImportExel" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#largeModal" class="btn btn-outline-secondary">Cencel</button>
-                                <button type="submit" name="submit" id="btn_save_add_import" disabled
-                                    class="btn btn-primary">Save</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -382,85 +333,61 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel3">Tambah Infaq</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="register-user-Infaq/check" class="demo-vertical-spacing demo-only-element"
+                        <form action="payment-infaq/check" class="demo-vertical-spacing demo-only-element"
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">
-                                <label class="form-label" for="username">Username <span
+                                <label class="form-label" for="price">Bulan <span style="color: red">*</span></label>
+
+                                <div class="input-group">
+                                    <select id="selectmethod" class="form-select" onchange="check()" required name="month_selected_add"
+                                        required>
+                                        <option value="default">Silahkan dipilih</option>
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mt-2">
+                                <label class="form-label" for="price">Sekolah <span style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <select id="selectmethod" class="form-select" onchange="check()" required name="category_selected_add"
+                                        required>
+                                        <option value="default">Silahkan dipilih</option>
+                                        <option value="MTS">MTS</option>
+                                        <option value="MAN">MAN</option>
+                                        <option value="SMK">SMK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="username">Jumlah <span
                                         style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control"
-                                        value="{{ Session::get('username') }}" name="username_add"
-                                        placeholder="Username" aria-label="username" aria-describedby="basic-addon11"
-                                        required />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="name">Nama <span
-                                        style="color: red">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" value="{{ Session::get('name') }}"
-                                        name="name_add" placeholder="Name" aria-label="Name"
-                                        aria-describedby="basic-addon11" required />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="email">Email</label>
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon11">@</span>
-                                    <input type="text" class="form-control" value="{{ Session::get('email') }}"
-                                        name="email_add" placeholder="email" aria-label="email"
-                                        aria-describedby="basic-addon11" />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="address">address</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" value="{{ Session::get('address') }}"
-                                        name="address_add" placeholder="address" aria-label="address"
-                                        aria-describedby="basic-addon11" />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="basic-default-password12">Password <span
-                                        style="color: red">*</span></label>
-                                <div class="form-password-toggle">
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="password_add"
-                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                            aria-describedby="basic-default-password2" required />
-                                        <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                            <i class="bx bx-hide"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="basic-default-password12">Ulangi Password <span
-                                        style="color: red">*</span></label>
-                                <div class="form-password-toggle">
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="confirm_password_add"
-                                            id="confirm_password" onkeyup="check_add()"
-                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                            aria-describedby="basic-default-password2" required />
-                                        <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                            <i class="bx bx-hide"></i>
-                                        </span>
-                                    </div>
-                                    <span id='message_add'></span>
+                                    <input type="text" class="form-control" onkeyup="check()" name="amount_add" placeholder="Jumlah"
+                                        aria-label="Jumlah" aria-describedby="basic-addon11" required />
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button id="showImportExel" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#largeModalExportExel" class="btn btn-primary">Import
-                                    Exel</button>
-                                <button type="submit" name="submit" id="btn_save_add" disabled
-                                    class="btn btn-outline-secondary">Save</button>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="submit" name="submit" id="btn_save_add"
+                                    class="btn btn-outline-secondary" disabled >Save</button>
                             </div>
                         </form>
                     </div>
@@ -471,43 +398,26 @@
     </div>
 </div>
 
-
-
 <script>
     function check() {
-        var password = document.querySelector('input[name=password]');
-        var confirm_password = document.querySelector('input[name=confirm_password]');
-        var message = document.getElementById('message');
-        var button = document.getElementById('btn_save');
-
-        if (confirm_password.value === '') {
-            message.innerHTML = '';
-        } else if (password.value != confirm_password.value) {
-            message.innerHTML = 'Password tidak cocok';
-            message.style.color = 'red';
-            button.disabled = true;
-        } else {
-            message.innerHTML = '';
-            button.disabled = false;
-        }
-    }
-
-    function check_add() {
-        var password_add = document.querySelector('input[name=password_add]');
-        var confirm_password_add = document.querySelector('input[name=confirm_password_add]');
-        var message = document.getElementById('message_add');
+        var month = document.querySelector('select[name=month_selected_add]');
+        var category = document.querySelector('select[name=category_selected_add]');
+        var jumlah = document.querySelector('input[name=amount_add]');
         var button = document.getElementById('btn_save_add');
 
-        if (confirm_password_add.value === '') {
-            message.innerHTML = '';
-        } else if (password_add.value !== confirm_password_add.value) {
-            message.innerHTML = 'Password tidak cocok';
-            message.style.color = 'red';
+        if (month.value === 'default') {
+            button.disabled = true;
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-outline-secondary");
+        } else if (category.value === 'default') {
+            button.disabled = true;
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-outline-secondary");
+        } else if (jumlah.value === '') {  
             button.disabled = true;
             button.classList.remove("btn-primary");
             button.classList.add("btn-outline-secondary");
         } else {
-            message.innerHTML = '';
             button.disabled = false;
             button.classList.remove("btn-outline-secondary");
             button.classList.add("btn-primary");
