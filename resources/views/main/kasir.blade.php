@@ -15,7 +15,7 @@
         <!--/ Bootstrap Toasts with Placement -->
         <!-- Contextual Classes -->
         <div class="card">
-            <h5 class="card-header">kasir</h5>
+            <h5 class="card-header">Santri</h5>
             <div class="text-nowrap" style="overflow-x: auto">
                 <table class="table">
                     <thead>
@@ -44,7 +44,13 @@
                                     @else
                                         <td>{{ $user->email }}</td>
                                     @endif
+                                    
+                                    @if ($user->username == null)
+                                    <td>-</td>
+                                    @else
                                     <td>{{ $user->username }}</td>
+                                    @endif
+
                                     @if ($user->address == null)
                                         <td>-</td>
                                     @else

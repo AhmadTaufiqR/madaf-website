@@ -8,6 +8,7 @@ use App\Models\product;
 use App\Models\product_out;
 use App\Models\store;
 use App\Models\User;
+use App\Models\UserPaymentRelation;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Auth\Events\Validated;
@@ -199,9 +200,9 @@ class OwnerController extends Controller
     {
 
         $payment = new payment_infaq();
-
         $payment->month = $request->input('month_selected_add');
         $payment->category = $request->input('category_selected_add');
+        $payment->eat_amount = $request->input('eat_amount_add');
         $payment->amount = $request->input('amount_add');
         $payment->save();
 
@@ -223,7 +224,6 @@ class OwnerController extends Controller
             return redirect('infaq')->withErrors('Silahkan Masukkan kembali');
         }
     }
-
 
 
 

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('payment_infaqs', function (Blueprint $table) {
             $table->id();
             $table->string('month');
+            $table->integer('eat_amount');
             $table->integer('amount');
             $table->string('category');
             $table->timestamps();

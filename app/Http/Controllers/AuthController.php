@@ -37,15 +37,15 @@ class AuthController extends Controller
             $user = User::where($loginField, '=', $request->input('email-name'))->first();
         
             if ($user) {
-                if ($user->level === 'user') {
+                if ($user->level === 'santri') {
                     if (Auth::attempt($login)) {
-                        return redirect('dashboard')->with('success', 'Anda Berhasil Login SANTRI');
+                        return redirect('dashboard')->with('success', 'Anda Berhasil Login Santri');
                     } else {
                         throw ValidationException::withMessages([$loginField => 'Username atau Password yang anda masukkan salah']);
                     }
                 } elseif ($user->level === 'admin') {
                     if (Auth::attempt($login)) {
-                        return redirect('dashboard')->with('success', 'Anda Berhasil Login ADMIN');
+                        return redirect('dashboard')->with('success', 'Anda Berhasil Login Admin');
                     } else {
                         throw ValidationException::withMessages([$loginField => 'Username atau Password yang anda masukkan salah']);
                     }

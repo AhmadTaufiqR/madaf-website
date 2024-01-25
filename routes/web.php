@@ -77,4 +77,10 @@ Route::prefix('payment-infaq')->group(function () {
     Route::delete('delete-payment-infaq/{id}', [OwnerController::class, 'deleteInfaq'])->middleware('isLogin');
 });
 
+Route::prefix('eat-payment')->group(function () {
+    Route::post('check', [OwnerController::class, 'addingMakan'])->middleware('isLogin');
+    Route::post('update-eat-payment/{id}', [OwnerController::class, 'editMakan'])->middleware('isLogin');
+    Route::delete('delete-eat-payment/{id}', [OwnerController::class, 'deleteMakan'])->middleware('isLogin');
+});
+
 Route::get('logout', [AuthController::class, 'logout']);

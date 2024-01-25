@@ -154,8 +154,13 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="uang-makan" class="menu-link">
-                                    <div data-i18n="Uang Makan">Uang Makan</div>
+                                <a class="menu-link">
+                                    <div data-i18n="">Coming Soon</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a class="menu-link">
+                                    <div data-i18n="">Coming Soon</div>
                                 </a>
                             </li>
                         </ul>
