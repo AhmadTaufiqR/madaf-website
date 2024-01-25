@@ -2,7 +2,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">List Daftar/</span> Pembayaran</h4>
         <!-- Bootstrap Toasts with Placement -->
-        <div class="card mb-4">
+        {{-- <div class="card mb-4">
             <div class="card-body">
                 <div class="row gx-3 gy-2 align-items-center">
                     <div class="col-md-3">
@@ -11,7 +11,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--/ Bootstrap Toasts with Placement -->
         <!-- Contextual Classes -->
         <div class="card">
@@ -390,16 +390,6 @@
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">
-                                <label class="form-label" for="username">Username <span
-                                        style="color: red">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control"
-                                        value="{{ Session::get('username') }}" name="username_add"
-                                        placeholder="Username" aria-label="username" aria-describedby="basic-addon11"
-                                        required />
-                                </div>
-                            </div>
-                            <div class="mt-2">
                                 <label class="form-label" for="name">Nama <span
                                         style="color: red">*</span></label>
                                 <div class="input-group">
@@ -408,53 +398,17 @@
                                         aria-describedby="basic-addon11" required />
                                 </div>
                             </div>
+
                             <div class="mt-2">
-                                <label class="form-label" for="email">Email</label>
-                                <div class="input-group">
-                                    <span class="input-group-text" id="basic-addon11">@</span>
-                                    <input type="text" class="form-control" value="{{ Session::get('email') }}"
-                                        name="email_add" placeholder="email" aria-label="email"
-                                        aria-describedby="basic-addon11" />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="address">address</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" value="{{ Session::get('address') }}"
-                                        name="address_add" placeholder="address" aria-label="address"
-                                        aria-describedby="basic-addon11" />
-                                </div>
-                            </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="basic-default-password12">Password <span
+                                <label class="form-label" for="name">Jumlah <span
                                         style="color: red">*</span></label>
-                                <div class="form-password-toggle">
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="password_add"
-                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                            aria-describedby="basic-default-password2" required />
-                                        <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                            <i class="bx bx-hide"></i>
-                                        </span>
-                                    </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="{{ Session::get('name') }}"
+                                        name="jumlah_add" placeholder="Name" aria-label="Name"
+                                        aria-describedby="basic-addon11" required />
                                 </div>
                             </div>
-                            <div class="mt-2">
-                                <label class="form-label" for="basic-default-password12">Ulangi Password <span
-                                        style="color: red">*</span></label>
-                                <div class="form-password-toggle">
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" name="confirm_password_add"
-                                            id="confirm_password" onkeyup="check_add()"
-                                            placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                            aria-describedby="basic-default-password2" required />
-                                        <span id="basic-default-password2" class="input-group-text cursor-pointer">
-                                            <i class="bx bx-hide"></i>
-                                        </span>
-                                    </div>
-                                    <span id='message_add'></span>
-                                </div>
-                            </div>
+                            
                             <div class="modal-footer">
                                 <button id="showImportExel" type="button" data-bs-toggle="modal"
                                     data-bs-target="#largeModalExportExel" class="btn btn-primary">Import
