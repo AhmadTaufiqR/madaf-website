@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('level');
             $table->string('category')->nullable(true);
             $table->rememberToken();
-            // $table->softDeletes();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

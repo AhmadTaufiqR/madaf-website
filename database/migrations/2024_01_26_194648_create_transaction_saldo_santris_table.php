@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payment_infaqs', function (Blueprint $table) {
+        Schema::create('transaction_saldo_santris', function (Blueprint $table) {
             $table->id();
-            $table->string('month');
-            $table->integer('eat_amount');
-            $table->integer('amount');
-            $table->string('category');
+            $table->foreignId('users_id')->constrained();
+            $table->integer('add_saldo');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_infaqs');
+        Schema::dropIfExists('transaction_saldo_santris');
     }
 };

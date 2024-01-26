@@ -50,16 +50,13 @@
                                             <a class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#editModal-{{ $store->id }}"><i
                                                     class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <form action="{{ url('stores/delete-stores/' . $store->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="dropdown-item"><i
-                                                        class="bx bx-trash me-1"></i> Delete</button>
-                                            </form>
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#destroy-{{ $store->id }}"><i
+                                                    class="bx bx-trash me-1"></i>Hapus Koperasi</a>
                                         </div>
                                     </td>
                                 </tr>
+
                                 <div class="modal fade" id="editModal-{{ $store->id }}" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -70,7 +67,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ url('stores/update-stores/' . $store->id) }}"
+                                                <form action="{{ url('register-koperasi/update-koperasi/' . $store->id) }}"
                                                     class="demo-vertical-spacing demo-only-element" method="POST"
                                                     autocomplete="off">
                                                     @csrf
@@ -78,16 +75,17 @@
                                                         <label class="form-label" for="name">Nama Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
-                                                                value="{{ $store->name }}" name="name_add"
+                                                                value="{{ $store->name }}" name="name"
                                                                 placeholder="Name" aria-label="Name"
                                                                 aria-describedby="basic-addon11" required />
                                                         </div>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <label class="form-label" for="name">Pemilik Koperasi</label>
+                                                        <label class="form-label" for="name">Pemilik
+                                                            Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
-                                                                value="{{ $store->owner }}" name="owner_add"
+                                                                value="{{ $store->owner }}" name="owner"
                                                                 placeholder="Name" aria-label="Name"
                                                                 aria-describedby="basic-addon11" required />
                                                         </div>
@@ -95,7 +93,7 @@
                                                     <div class="mt-2">
                                                         <label class="form-label" for="alamat">Alamat</label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4">{{ $store->address }}</textarea>
+                                                            <textarea class="form-control" name="address" placeholder="Alamat Koperasi" cols="10" rows="4">{{ $store->address }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -111,10 +109,53 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="modal fade" id="destroy-{{ $store->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel3">Perhatian!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ url('register-koperasi/delete-koperasi/' . $store->id) }}"
+                                                    class="demo-vertical-spacing demo-only-element" method="POST"
+                                                    autocomplete="off">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="mt-2">
+                                                        <label for="basic-default-password12">Apakah anda yakin ingin
+                                                            menghapus data pengurus <br> Koperasi:
+                                                            <span class="form-label">{{ $store->name }}</span>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <span style="color: red">*</span> Dapat menghapus semua data
+                                                        </label>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" name="submit"
+                                                                class="btn btn-primary">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             @else
                                 <tr class="table-default">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><i class="fab fa-sketch fa-lg text-warning me-3"></i>
+                                    <td><i class="fab fa-react fa-lg text-info me-3"></i>
                                         <strong>{{ $store->name }}</strong>
                                     </td>
                                     <td>{{ $store->owner }}</td>
@@ -128,13 +169,9 @@
                                             <a class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#editModal-{{ $store->id }}"><i
                                                     class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <form action="{{ url('stores/delete-stores/' . $store->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="dropdown-item"><i
-                                                        class="bx bx-trash me-1"></i> Delete</button>
-                                            </form>
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#destroy-{{ $store->id }}"><i
+                                                    class="bx bx-trash me-1"></i>Hapus Koperasi</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -149,7 +186,7 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ url('stores/update-stores/' . $store->id) }}"
+                                                <form action="{{ url('register-koperasi/update-koperasi/' . $store->id) }}"
                                                     class="demo-vertical-spacing demo-only-element" method="POST"
                                                     autocomplete="off">
                                                     @csrf
@@ -157,16 +194,17 @@
                                                         <label class="form-label" for="name">Nama Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
-                                                                value="{{ $store->name }}" name="name_add"
+                                                                value="{{ $store->name }}" name="name"
                                                                 placeholder="Name" aria-label="Name"
                                                                 aria-describedby="basic-addon11" required />
                                                         </div>
                                                     </div>
                                                     <div class="mt-2">
-                                                        <label class="form-label" for="name">Pemilik Koperasi</label>
+                                                        <label class="form-label" for="name">Pemilik
+                                                            Koperasi</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control"
-                                                                value="{{ $store->owner }}" name="owner_add"
+                                                                value="{{ $store->owner }}" name="owner"
                                                                 placeholder="Name" aria-label="Name"
                                                                 aria-describedby="basic-addon11" required />
                                                         </div>
@@ -174,10 +212,9 @@
                                                     <div class="mt-2">
                                                         <label class="form-label" for="alamat">Alamat</label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4">{{ $store->address }}</textarea>
+                                                            <textarea class="form-control" name="address" placeholder="Alamat Koperasi" cols="10" rows="4">{{ $store->address }}</textarea>
                                                         </div>
                                                     </div>
-
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             data-bs-dismiss="modal">
@@ -187,7 +224,49 @@
                                                             class="btn btn-primary">Save</button>
                                                     </div>
                                                 </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <div class="modal fade" id="destroy-{{ $store->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel3">Perhatian!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ url('register-koperasi/delete-koperasi/' . $store->id) }}"
+                                                    class="demo-vertical-spacing demo-only-element" method="POST"
+                                                    autocomplete="off">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <div class="mt-2">
+                                                        <label for="basic-default-password12">Apakah anda yakin ingin
+                                                            menghapus data pengurus <br> Koperasi:
+                                                            <span class="form-label">{{ $store->name }}</span>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <br>
+                                                            <span style="color: red">*</span> Dapat menghapus semua data
+                                                        </label>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" name="submit"
+                                                                class="btn btn-primary">Delete</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -215,23 +294,28 @@
                             method="POST" autocomplete="off">
                             @csrf
                             <div class="mt-2">
-                                <label class="form-label" for="name">Nama Koperasi <span style="color: red">*</span></label>
+                                <label class="form-label" for="name">Nama Koperasi <span
+                                        style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="name_add" placeholder="Name" value="{{ Session::get('name') }}"
-                                        aria-label="Name" aria-describedby="basic-addon11" required onkeyup="check_add()"/>
+                                    <input type="text" class="form-control" name="name_add" placeholder="Name"
+                                        value="{{ Session::get('name') }}" aria-label="Name"
+                                        aria-describedby="basic-addon11" required />
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="name">Pemilik Koperasi <span style="color: red">*</span></label>
+                                <label class="form-label" for="name">Pemilik Koperasi <span
+                                        style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="owner_add" placeholder="Name" value="{{ Session::get('owner') }}"
-                                        aria-label="Name" aria-describedby="basic-addon11" required onkeyup="check_add()"/>
+                                    <input type="text" class="form-control" name="owner_add" placeholder="Name"
+                                        value="{{ Session::get('owner') }}" aria-label="Name"
+                                        aria-describedby="basic-addon11" required />
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="alamat">Alamat <span style="color: red">*</span></label>
+                                <label class="form-label" for="alamat">Alamat <span
+                                        style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4" onkeyup="check_add()"></textarea>
+                                    <textarea class="form-control" name="address_add" placeholder="Alamat Koperasi" cols="10" rows="4" required></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -239,7 +323,7 @@
                                     Close
                                 </button>
                                 <button type="submit" name="submit" id="btn_save_add"
-                                    class="btn btn-outline-secondary" disabled>Save</button>
+                                    class="btn btn-primary">Save</button>
                             </div>
                         </form>
 
@@ -253,44 +337,3 @@
     </div>
 </div>
 
-<script>
-    function check_add() {
-        var name = document.querySelector('input[name=name_add]');
-        var owner = document.querySelector('input[name=owner_add]');
-        var address = document.querySelector('textarea[name=address_add]');
-        var button = document.getElementById('btn_save_add');
-
-        if (name.value === '') {
-            button.disabled = true
-            button.classList.remove("btn-primary")
-            button.classList.add("btn-outline-secondary")
-        } else if (owner.value === '') {
-            button.disabled = true
-            button.classList.remove("btn-primary")
-            button.classList.add("btn-outline-secondary")
-        } else if (address.value === '') {
-            button.disabled = true
-            button.classList.remove("btn-primary")
-            button.classList.add("btn-outline-secondary")
-        } else {
-            button.disabled = false
-            button.classList.remove("btn-outline-secondary")
-            button.classList.add("btn-primary")
-        }
-
-        // if (confirm_password_add.value === '') {
-        //     message.innerHTML = '';
-        // } else if (password_add.value !== confirm_password_add.value) {
-        //     message.innerHTML = 'Password tidak cocok';
-        //     message.style.color = 'red';
-        //     button.disabled = true;
-        //     button.classList.remove("btn-primary");
-        //     button.classList.add("btn-outline-secondary");
-        // } else {
-        //     message.innerHTML = '';
-        //     button.disabled = false;
-        //     button.classList.remove("btn-outline-secondary");
-        //     button.classList.add("btn-primary");
-        // }
-    }
-</script>

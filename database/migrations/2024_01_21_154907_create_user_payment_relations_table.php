@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('users_id')->constrained();
             $table->foreignId('payment_infaqs_id')->constrained();
             $table->enum('status', ['Belum Lunas', 'Lunas']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class UserImport implements ToModel, WithHeadingRow
+class PengurusImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -17,11 +17,12 @@ class UserImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new User([
-            'name' => $row['name'],
             'username' => $row['username'],
+            'name' => $row['nama'],
             'email' => $row['email'],
-            'address' => $row['address'],
+            'address' => $row['alamat'],
             'password' => Hash::make($row['password']),
+            'level' => 'pengurus',
         ]);
     }
 }
