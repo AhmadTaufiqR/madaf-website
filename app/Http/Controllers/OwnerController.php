@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\PengurusImport;
+use App\Imports\SantriImport;
 use App\Models\detail_product_out;
 use App\Models\payment_infaq;
 use App\Models\product;
 use App\Models\product_out;
 use App\Models\store;
+use App\Models\TransactionSaldoSantri;
 use App\Models\User;
 use App\Models\UserPaymentRelation;
 use Carbon\Carbon;
@@ -16,12 +19,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
+use Excel;
+use Maatwebsite\Excel\Excel as ExcelExcel;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class OwnerController extends Controller
 {
     function view_regist()
     {
         return view('register.register');
+    }
+
+    function add_owner(Request $request) {
+        $admin = new User();
+        $admin->name = $request->input('name');
+        $admin->username = $request->input('username');
+        $admin->email = $request->input('email');
+        $admin->password = Hash::make($request->input('password'));
+        $admin->level = 'admin';
+        $admin->save();
+
+        return redirect('/')->with('success', 'Berhasil ditambahkan');
     }
 
     function addPengurus(Request $request)
@@ -61,6 +79,16 @@ class OwnerController extends Controller
         }
     }
 
+    function addPengurusExcel(Request $request)
+    {
+        $import = FacadesExcel::import(new PengurusImport, $request->fileExel);
+        if ($import) {
+            return redirect('pengurus')->with('success', 'Data pengurus berhasil ditambahkan');
+        }
+        return redirect('pengurus')->withErrors('Silahkan masukkan kembali');
+    }
+
+
 
     function addSantri(Request $request)
     {
@@ -92,6 +120,7 @@ class OwnerController extends Controller
         if ($request->input('address_add') != '') {
             $santri->address = $request->input('address_add');
         }
+        $santri->balance = '0';
         $santri->password = Hash::make($request->input('password_add'));
         $santri->level = 'santri';
 
@@ -102,6 +131,15 @@ class OwnerController extends Controller
         } else {
             return redirect('santri')->withErrors('Silahkan masukkan kembali');
         }
+    }
+
+    function addSantriExcel(Request $request)
+    {
+        $import = FacadesExcel::import(new SantriImport, $request->fileExel);
+        if ($import) {
+            return redirect('santri')->with('success', 'Data santri berhasil ditambahkan');
+        }
+        return redirect('santri')->withErrors('Silahkan masukkan kembali');
     }
 
     function addKasir(Request $request)
@@ -160,6 +198,7 @@ class OwnerController extends Controller
         $add_stores->name = $request->input('name_add');
         $add_stores->owner = $request->input('owner_add');
         $add_stores->address = $request->input('address_add');
+        $add_stores->balance = '0';
         $add_stores->save();
 
         if ($add_stores) {
@@ -167,32 +206,6 @@ class OwnerController extends Controller
         } else {
             return redirect('koperasi')->withErrors('Silahkan Masukkan kembali');
         }
-    }
-
-    function editKoperasi(Request $request, $id)
-    {
-        $edit_store = store::find($id);
-
-        if ($edit_store) {
-            $edit_store->name = $request->input('name_add');
-            $edit_store->owner = $request->input('owner_add');
-            $edit_store->address = $request->input('address_add');
-            $edit_store->save();
-
-            return redirect('toko-admin')->with('success', 'Data berhasil diubah');
-        }
-        return redirect('toko-admin')->withErrors('Silahkan isikan kembali');
-    }
-
-    function deleteKoperasi($id)
-    {
-        $delete_store = store::find($id);
-
-        if ($delete_store) {
-            $delete_store->delete();
-            return redirect('toko-admin')->with('success', ' Data berhasil dihapus');
-        }
-        return redirect('toko-admin')->withErrors('Silahkan ulangi kembali');
     }
 
     //Bagian Infaq
@@ -225,6 +238,226 @@ class OwnerController extends Controller
         }
     }
 
+    public function updatePengurus(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            // Update data
+            if ($request->has('name')) {
+                $user->name = $request->input('name');
+            }
+            if ($request->has('email')) {
+                $user->email = $request->input('email');
+            }
+            if ($request->has('address')) {
+                $user->address = $request->input('address');
+            }
+            $user->save();
+
+            return redirect('pengurus')->with('success', 'Pengurus berhasil diperbarui');
+        }
+
+        return redirect('pengurus')->withErrors('Pengurus tidak ditemukan');
+    }
+
+    public function updatePasswordPengurus(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        if ($request->input('password') == $request->input('confirm_password')) {
+            if ($user) {
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
+                return redirect('pengurus')->with('success', 'Password berhasil diperbarui');
+            }
+        } else {
+            return redirect('pengurus')->withErrors('Password Tidak Cocok');
+        }
+
+        return redirect('pengurus')->withErrors('Pengurus tidak ditemukan');
+    }
+
+    public function destroyPengurus($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect('pengurus')->with('success', 'Pengurus berhasil dihapus');
+        }
+
+        return redirect('pengurus')->withErrors('Pengurus tidak ditemukan');
+    }
+
+    public function updateSantri(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            // Update data
+            if ($request->has('name')) {
+                $user->name = $request->input('name');
+            }
+            if ($request->has('email')) {
+                $user->email = $request->input('email');
+            }
+            if ($request->has('address')) {
+                $user->address = $request->input('address');
+            }
+            if ($request->has('category_selected_add')) {
+                $user->category = $request->input('category_selected_add');
+            }
+            $user->save();
+
+            return redirect('santri')->with('success', 'Santri berhasil diperbarui');
+        }
+
+        return redirect('santri')->withErrors('Santri tidak ditemukan');
+    }
+
+    public function updateBalanceSantri(Request $request, $id)
+    {
+        $santri = new TransactionSaldoSantri();
+
+        $request->validate([
+            'tambah_saldo' => 'required'
+        ], [
+            'tambah_saldo.required' => 'Saldo harus diisi'
+        ]);
+
+        $santri->users_id = $id;
+        $santri->add_saldo = $request->input('tambah_saldo');
+        $santri->save();
+
+        if ($santri) {
+            return redirect('santri')->with('success', 'Santri berhasil diperbarui');
+        } else {
+            return redirect('santri')->withErrors('Silahkan dicheck kembali');
+        }
+    }
+
+    public function updatePasswordSantri(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        if ($request->input('password') == $request->input('confirm_password')) {
+            if ($user) {
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
+                return redirect('santri')->with('success', 'Password berhasil diperbarui');
+            }
+        } else {
+            return redirect('santri')->withErrors('Password Tidak Cocok');
+        }
+
+        return redirect('santri')->withErrors('Santri tidak ditemukan');
+    }
+
+    public function destroySantri($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect('santri')->with('success', 'Santri berhasil dihapus');
+        }
+
+        return redirect('santri')->withErrors('Santri tidak ditemukan');
+    }
+
+    public function updateKasir(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            // Update data
+            if ($request->has('name')) {
+                $user->name = $request->input('name');
+            }
+            if ($request->has('email')) {
+                $user->email = $request->input('email');
+            }
+            if ($request->has('address')) {
+                $user->address = $request->input('address');
+            }
+            if ($request->has('category_selected_add')) {
+                $user->category = $request->input('category_selected_add');
+            }
+            $user->save();
+
+            return redirect('kasir')->with('success', 'Kasir berhasil diperbarui');
+        }
+
+        return redirect('kasir')->withErrors('Kasir tidak ditemukan');
+    }
+
+    public function updatePasswordKasir(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        if ($request->input('password') == $request->input('confirm_password')) {
+            if ($user) {
+                $user->password = Hash::make($request->input('password'));
+                $user->save();
+                return redirect('kasir')->with('success', 'Password berhasil diperbarui');
+            }
+        } else {
+            return redirect('kasir')->withErrors('Password Tidak Cocok');
+        }
+
+        return redirect('kasir')->withErrors('Kasir tidak ditemukan');
+    }
+
+    public function destroyKasir($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect('kasir')->with('success', 'Kasir berhasil dihapus');
+        }
+
+        return redirect('kasir')->withErrors('Kasir tidak ditemukan');
+    }
+
+    public function updateKoperasi(Request $request, $id)
+    {
+        $user = store::find($id);
+
+        if ($user) {
+            // Update data
+            if ($request->has('name')) {
+                $user->name = $request->input('name');
+            }
+            if ($request->has('owner')) {
+                $user->owner = $request->input('owner');
+            }
+            if ($request->has('address')) {
+                $user->address = $request->input('address');
+            }
+            $user->save();
+
+            return redirect('koperasi')->with('success', 'Koperasi berhasil diperbarui');
+        }
+
+        return redirect('koperasi')->withErrors('Koperasi tidak ditemukan');
+    }
+
+    public function destroyKoperasi($id)
+    {
+        $user = store::find($id);
+
+        if ($user) {
+            $user->delete();
+            return redirect('koperasi')->with('success', 'Koperasi berhasil dihapus');
+        }
+
+        return redirect('koperasi')->withErrors('Koperasi tidak ditemukan');
+    }
 
 
     // public function destroy($id)
