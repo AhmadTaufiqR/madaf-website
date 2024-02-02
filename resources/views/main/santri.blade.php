@@ -83,6 +83,9 @@
                                                 data-bs-target="#editModalBalance-{{ $user->id }}"><i
                                                     class="bx bx-money me-1"></i>Saldo Santri</a>
                                             <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#editModalWithdraw-{{ $user->id }}"><i
+                                                    class="bx bx-money-withdraw me-1"></i>Tarik Saldo</a>
+                                            <a class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#destroy-{{ $user->id }}"><i
                                                     class="bx bx-trash me-1"></i>Hapus Santri</a>
                                             {{-- <form action="{{ route('users.destroy', $user->id) }}" method="POST">
@@ -207,6 +210,55 @@
                                                             <input type="text" class="form-control"
                                                                 name="tambah_saldo" placeholder="Masukkan saldo"
                                                                 aria-label="Masukkan saldo" required
+                                                                aria-describedby="basic-addon11" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" name="submit"
+                                                                class="btn btn-primary">Save Change</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Large Modal Add -->
+                                <div class="modal fade" id="editModalWithdraw-{{ $user->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel3">Saldo Santri</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form
+                                                    action="{{ url('register-user-santri/withdraw-balance/' . $user->id) }}"
+                                                    class="demo-vertical-spacing demo-only-element" method="POST"
+                                                    autocomplete="off">
+                                                    @csrf
+                                                    <div class="mt-2">
+                                                        <label class="form-label" for="name">Saldo</label>
+                                                        <h5 class="modal-title" id="exampleModalLabel3">Rp.
+                                                            {{ number_format($user->balance, 0, ',', '.') }}</h5>
+                                                        <br>
+                                                    </div>
+
+                                                    <div class="mt-2">
+                                                        <label class="form-label" for="name">Tarik Uang <span
+                                                                style="color: red">*</span></label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control"
+                                                                name="min_saldo" placeholder="Masukkan Jumlah Uang"
+                                                                aria-label="Masukkan Jumlah Uang" required
                                                                 aria-describedby="basic-addon11" />
                                                         </div>
                                                     </div>
@@ -369,6 +421,9 @@
                                                     class="bx bx-money me-1"></i>Saldo
                                                 Santri</a>
                                             <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#editModalWithdraw-{{ $user->id }}"><i
+                                                    class="bx bx-money-withdraw me-1"></i>Tarik Saldo</a>
+                                            <a class="dropdown-item" data-bs-toggle="modal"
                                                 data-bs-target="#destroy-{{ $user->id }}"><i
                                                     class="bx bx-trash me-1"></i>Hapus Santri</a>
                                             {{-- <form action="{{ route('users.destroy', $user->id) }}" method="POST">
@@ -512,6 +567,55 @@
                                     </div>
                                 </div>
 
+                                <!-- Large Modal Add -->
+                                <div class="modal fade" id="editModalWithdraw-{{ $user->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel3">Saldo Santri</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form
+                                                    action="{{ url('register-user-santri/withdraw-balance/' . $user->id) }}"
+                                                    class="demo-vertical-spacing demo-only-element" method="POST"
+                                                    autocomplete="off">
+                                                    @csrf
+                                                    <div class="mt-2">
+                                                        <label class="form-label" for="name">Saldo</label>
+                                                        <h5 class="modal-title" id="exampleModalLabel3">Rp.
+                                                            {{ number_format($user->balance, 0, ',', '.') }}</h5>
+                                                        <br>
+                                                    </div>
+
+                                                    <div class="mt-2">
+                                                        <label class="form-label" for="name">Tarik Uang <span
+                                                                style="color: red">*</span></label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control"
+                                                                name="min_saldo" placeholder="Masukkan Jumlah Uang"
+                                                                aria-label="Masukkan Jumlah Uang" required
+                                                                aria-describedby="basic-addon11" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-secondary"
+                                                                data-bs-dismiss="modal">
+                                                                Close
+                                                            </button>
+                                                            <button type="submit" name="submit"
+                                                                class="btn btn-primary">Save Change</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="modal fade" id="editModalPassword-{{ $user->id }}" tabindex="-1"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -630,8 +734,9 @@
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="register-user-santri/check/excel" class="demo-vertical-spacing demo-only-element"
-                            method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <form action="register-user-santri/check/excel"
+                            class="demo-vertical-spacing demo-only-element" method="POST" autocomplete="off"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="mt-2">
                                 <label class="form-label" for="name">File Exel</label>
@@ -643,8 +748,7 @@
                             <div class="modal-footer">
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#largeModal"
                                     class="btn btn-outline-secondary">Cencel</button>
-                                <button type="submit" name="submit"
-                                    class="btn btn-primary">Save</button>
+                                <button type="submit" name="submit" class="btn btn-primary">Save</button>
                             </div>
                         </form>
                     </div>

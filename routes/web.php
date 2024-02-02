@@ -57,6 +57,7 @@ Route::prefix('register-user-santri')->group(function () {
     Route::post('check/excel', [OwnerController::class, 'addSantriExcel'])->middleware('isLogin');
     Route::post('update/{id}', [OwnerController::class, 'updateSantri'])->middleware('isLogin');
     Route::post('update-balance/{id}', [OwnerController::class, 'updateBalanceSantri'])->middleware('isLogin');
+    Route::post('withdraw-balance/{id}', [OwnerController::class, 'withdrawBalanceSantri'])->middleware('isLogin');
     Route::post('update-password/{id}', [OwnerController::class, 'updatePasswordSantri'])->middleware('isLogin');
     Route::delete('delete/{id}', [OwnerController::class, 'destroySantri'])->middleware('isLogin');
 });
