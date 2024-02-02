@@ -139,6 +139,17 @@ data-template="vertical-menu-template-free"
                                 autofocus
                                 />
                             </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Email</label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your username"
+                                autofocus
+                                />
+                            </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">Password</label>
                                 <div class="input-group input-group-merge">

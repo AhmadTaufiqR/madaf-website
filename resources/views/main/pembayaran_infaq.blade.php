@@ -22,9 +22,10 @@
                         <tr>
                             <th>#</th>
                             <th>Bulan</th>
-                            <th>Tahun</th>
+                            <th>Uang Infaq</th>
+                            <th>Uang Makan</th>
                             <th>Kelas</th>
-                            <th>Jumlah</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,8 +39,9 @@
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
                                         <strong>{{ $user->month }}</strong>
                                     </td>
-                                    <td>-</td>
+                            
                                     <td>{{ $user->amount }}</td>
+                                    <td>{{ $user->eat_amount }}</td>
                                     <td>{{ $user->category }}</td>
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -182,8 +184,8 @@
                                     <td><i class="fab fa-react fa-lg text-info me-3"></i>
                                         <strong>{{ $user->month }}</strong>
                                     </td>
-                                    <td>-</td>
                                     <td>{{ $user->amount }}</td>
+                                    <td>{{ $user->eat_amount }}</td>
                                     <td>{{ $user->category }}</td>
                                     <td>
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -375,10 +377,18 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <label class="form-label" for="username">Jumlah <span
+                                <label class="form-label" for="UangInfaq">Uang Infaq <span
                                         style="color: red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" onkeyup="check()" name="amount_add" placeholder="Jumlah"
+                                    <input type="number" class="form-control" onkeyup="check()" name="amount_add" placeholder="Jumlah"
+                                        aria-label="Jumlah" aria-describedby="basic-addon11" required />
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label class="form-label" for="UangMakan">Uang Makan <span
+                                        style="color: red">*</span></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" onkeyup="check()" name="eat_amount_add" placeholder="Jumlah"
                                         aria-label="Jumlah" aria-describedby="basic-addon11" required />
                                 </div>
                             </div>
@@ -403,6 +413,7 @@
         var month = document.querySelector('select[name=month_selected_add]');
         var category = document.querySelector('select[name=category_selected_add]');
         var jumlah = document.querySelector('input[name=amount_add]');
+        var eat = document.querySelector('input[name=eat_amount_add]');
         var button = document.getElementById('btn_save_add');
 
         if (month.value === 'default') {
@@ -414,6 +425,10 @@
             button.classList.remove("btn-primary");
             button.classList.add("btn-outline-secondary");
         } else if (jumlah.value === '') {  
+            button.disabled = true;
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-outline-secondary");
+        } else if (eat.value === '') {
             button.disabled = true;
             button.classList.remove("btn-primary");
             button.classList.add("btn-outline-secondary");

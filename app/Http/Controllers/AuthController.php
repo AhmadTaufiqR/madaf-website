@@ -18,34 +18,28 @@ class AuthController extends Controller
         
         try {
             $request->validate([
-                'email-name' => 'required',
+                'email-username' => 'required',
                 'password' => 'required',
             ], [
-                'email-name.required' => 'Kolom email atau username harus diisi.',
+                'email-username.required' => 'Kolom email atau username harus diisi.',
                 'password.required' => 'Kolom password harus diisi.',
             ]);
         
             // Memeriksa apakah input memiliki format email yang valid
-            $loginField = filter_var($request->input('email-name'), FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
+            $loginField = filter_var($request->input('email-username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         
             $login = [
-                $loginField => $request->input('email-name'),
+                $loginField => $request->input('email-username'),
                 'password' => $request->password,
             ];
         
             // Get the user's level, assuming the User model has a "level" attribute
-            $user = User::where($loginField, '=', $request->input('email-name'))->first();
+            $user = User::where($loginField, '=', $request->input('email-username'))->first();
         
             if ($user) {
-                if ($user->level === 'user') {
+                if ($user->level === 'admin') {
                     if (Auth::attempt($login)) {
-                        return redirect('dashboard')->with('success', 'Anda Berhasil Login SANTRI');
-                    } else {
-                        throw ValidationException::withMessages([$loginField => 'Username atau Password yang anda masukkan salah']);
-                    }
-                } elseif ($user->level === 'admin') {
-                    if (Auth::attempt($login)) {
-                        return redirect('dashboard')->with('success', 'Anda Berhasil Login ADMIN');
+                        return redirect('dashboard')->with('success', 'Anda Berhasil Login Admin');
                     } else {
                         throw ValidationException::withMessages([$loginField => 'Username atau Password yang anda masukkan salah']);
                     }
