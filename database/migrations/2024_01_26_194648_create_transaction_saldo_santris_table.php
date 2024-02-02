@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('users_id')->constrained();
             $table->integer('add_saldo');
+            $table->integer('min_saldo');
             $table->softDeletes();
             $table->timestamps();
         });

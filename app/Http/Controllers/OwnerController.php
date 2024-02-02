@@ -238,7 +238,7 @@ class OwnerController extends Controller
         }
     }
 
-    public function updatePengurus(Request $request, $id)
+    function updatePengurus(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -261,7 +261,7 @@ class OwnerController extends Controller
         return redirect('pengurus')->withErrors('Pengurus tidak ditemukan');
     }
 
-    public function updatePasswordPengurus(Request $request, $id)
+    function updatePasswordPengurus(Request $request, $id)
     {
 
         $user = User::find($id);
@@ -279,7 +279,7 @@ class OwnerController extends Controller
         return redirect('pengurus')->withErrors('Pengurus tidak ditemukan');
     }
 
-    public function destroyPengurus($id)
+    function destroyPengurus($id)
     {
         $user = User::find($id);
 
@@ -291,7 +291,7 @@ class OwnerController extends Controller
         return redirect('pengurus')->withErrors('Pengurus tidak ditemukan');
     }
 
-    public function updateSantri(Request $request, $id)
+    function updateSantri(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -317,7 +317,7 @@ class OwnerController extends Controller
         return redirect('santri')->withErrors('Santri tidak ditemukan');
     }
 
-    public function updateBalanceSantri(Request $request, $id)
+    function updateBalanceSantri(Request $request, $id)
     {
         $santri = new TransactionSaldoSantri();
 
@@ -338,7 +338,34 @@ class OwnerController extends Controller
         }
     }
 
-    public function updatePasswordSantri(Request $request, $id)
+    function withdrawBalanceSantri(Request $request, $id) 
+    {
+
+        $cek_balance = User::where('id', $id)->pluck('balance')->first();
+        if ($cek_balance < $request->input('min_saldo') || $cek_balance == 0) {
+            return redirect('santri')->withErrors('Saldo anda tidak mencukupi');
+        }
+
+        $santri = new TransactionSaldoSantri();
+
+        $request->validate([
+            'min_saldo' => 'required'
+        ], [
+            'min_saldo.required' => 'Saldo harus diisi'
+        ]);
+
+        $santri->users_id = $id;
+        $santri->min_saldo = $request->input('min_saldo');
+        $santri->save();
+
+        if ($santri) {
+            return redirect('santri')->with('success', 'Saldo berhasil dikurangi');
+        } else {
+            return redirect('santri')->withErrors('Silahkan dicheck kembali');
+        }
+    }
+
+    function updatePasswordSantri(Request $request, $id)
     {
 
         $user = User::find($id);
@@ -356,7 +383,7 @@ class OwnerController extends Controller
         return redirect('santri')->withErrors('Santri tidak ditemukan');
     }
 
-    public function destroySantri($id)
+    function destroySantri($id)
     {
         $user = User::find($id);
 
@@ -368,7 +395,7 @@ class OwnerController extends Controller
         return redirect('santri')->withErrors('Santri tidak ditemukan');
     }
 
-    public function updateKasir(Request $request, $id)
+    function updateKasir(Request $request, $id)
     {
         $user = User::find($id);
 
@@ -394,7 +421,7 @@ class OwnerController extends Controller
         return redirect('kasir')->withErrors('Kasir tidak ditemukan');
     }
 
-    public function updatePasswordKasir(Request $request, $id)
+    function updatePasswordKasir(Request $request, $id)
     {
 
         $user = User::find($id);
@@ -412,7 +439,7 @@ class OwnerController extends Controller
         return redirect('kasir')->withErrors('Kasir tidak ditemukan');
     }
 
-    public function destroyKasir($id)
+    function destroyKasir($id)
     {
         $user = User::find($id);
 
@@ -424,7 +451,7 @@ class OwnerController extends Controller
         return redirect('kasir')->withErrors('Kasir tidak ditemukan');
     }
 
-    public function updateKoperasi(Request $request, $id)
+    function updateKoperasi(Request $request, $id)
     {
         $user = store::find($id);
 
@@ -447,7 +474,7 @@ class OwnerController extends Controller
         return redirect('koperasi')->withErrors('Koperasi tidak ditemukan');
     }
 
-    public function destroyKoperasi($id)
+    function destroyKoperasi($id)
     {
         $user = store::find($id);
 
@@ -458,98 +485,5 @@ class OwnerController extends Controller
 
         return redirect('koperasi')->withErrors('Koperasi tidak ditemukan');
     }
-
-
-    // public function destroy($id)
-    // {
-    //     $user = User::find($id);
-
-    //     if ($user) {
-    //         $user->delete();
-    //         return redirect('users')->with('success', 'User berhasil dihapus');
-    //     }
-
-    //     return redirect('users')->withErrors('User tidak ditemukan');
-    // }
-
-    // public function update(Request $request, $id) {
-    //     $user = User::find($id);
-
-    //     $request->validate([
-    //         'name' => 'required',
-    //         'username' => [
-    //             'required',
-    //             Rule::unique('users')->ignore($user->id),
-    //         ],
-    //     ], [
-    //         'username.unique' => 'Username sudah terdaftar.',
-    //     ]);
-
-    //     if ($user) {
-    //         // Update data
-    //         $user->name = $request->input('name');
-    //         $user->username = $request->input('username');
-    //         $user->save();
-
-    //         return redirect('users')->with('success', 'Admin updated successfully.');
-    //     }
-
-    //     return redirect('users')->withErrors('Admin not found.');
-    // }
-    // public function update_password(Request $request, $id) {
-
-    //     $user = User::find($id);
-
-    //     if ($user) {    
-    //         if ($request->has('password')) {
-    //             $user->password =Hash::make($request->input('password'));
-    //         }
-    //         $user->save();
-
-    //         return redirect('users')->with('success', 'Admin updated successfully.');
-    //     }
-
-    //     return redirect('users')->withErrors('Admin not found.');
-    // }
-
-    //     public static function getTransaction() {
-    //         $allOfProductOut = product_out::where('status', '=', 'Lunas')->get();
-    //         $allOfProductOutTransaction = product_out::all();
-    //         $allOfDetail = detail_product_out::all();
-    //         $allOfProductOutNotPaid = product_out::where('status', '=', 'Belum lunas')->get();
-
-    //         $sum_price = $allOfProductOut->sum('price');
-    //         $formatted_price = number_format($sum_price, 0, ',', '.');
-    //         $countProductOut = $allOfProductOutTransaction->count();
-    //         $countDetail = $allOfDetail->count();
-    //         $countNotPaid = $allOfProductOutNotPaid->count();
-
-    //         $date = now();
-    //         $format_date = Carbon::parse($date)->format('Y');
-
-    //         return [$formatted_price, $countProductOut, $countDetail, $countNotPaid, $format_date];
-    //     }
-
-
-    //     static function growUp() {
-    //         $allOfProductOut = product_out::where('status', '=', 'Lunas')->get();
-
-    //         $start_date = $allOfProductOut->min('date');
-    //         $date = new DateTime(now());
-    //         $date_format = Carbon::parse($start_date);
-    //         $dateFormatBegin = Carbon::parse($date)->startOfMonth();
-    //         $dateFormatEnd = Carbon::parse($date)->endOfMonth()->format('d-m-Y');
-
-    //         if ($dateFormatBegin >= $date_format) {
-    //             echo "berhasil";
-
-    //         } else {
-    //             echo "gagal";
-    //         }
-    //     }
-
-    //     static function profileReport() {
-    //         $allOfProductOut = product_out::where('status', '=', 'Lunas')->get();
-    //         return response()->json($allOfProductOut);
-    //     }
+    
 }
