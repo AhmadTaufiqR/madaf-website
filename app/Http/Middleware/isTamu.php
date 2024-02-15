@@ -18,7 +18,12 @@ class isTamu
     public function handle(Request $request, Closure $next)
     {
         if (Auth::check()) {
-            return redirect('dashboard')->withErrors('Anda sudah login sebagai admin');
+            $userLavel = Auth::user();
+            if ($userLavel->level === 'admin') {
+                return redirect('dashboard')->withErrors('Anda sudah login sebagai admin');
+            } else if ($userLavel->level === 'pengurus') {
+                return redirect('dashboard')->withErrors('Anda sudah login sebagai pengurus');
+            }
         }
 
         return $next($request);
