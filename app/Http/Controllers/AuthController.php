@@ -44,6 +44,14 @@ class AuthController extends Controller
                         throw ValidationException::withMessages([$loginField => 'Username atau Password yang anda masukkan salah']);
                     }
                 }
+
+                if ($user->level === 'pengurus') {
+                    if (Auth::attempt($login)) {
+                        return redirect('dashboard')->with('success', 'Anda Berhasil Login Pengurus');
+                    } else {
+                        throw ValidationException::withMessages([$loginField => 'Username atau Password yang anda masukkan salah']);
+                    }
+                }
             }
         
             throw ValidationException::withMessages([$loginField => 'Akun tidak ditemukan atau tidak memiliki hak akses.']);
